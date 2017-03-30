@@ -15,11 +15,22 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('user')->unique();
             $table->string('password');
+            $table->string('email')->unique();
+            $table->string('name');
+            $table->string('surname');
+            $table->boolean('active');
+            $table->integer('type')->unsigned();
             $table->rememberToken();
             $table->timestamps();
+        });
+
+        Schema::enableForeignKeyConstraints();
+
+        Schema::table('users', function (Blueprint $table) {
+            //$table->engine('InnoDB');
+            $table->foreign('type')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
