@@ -22,7 +22,7 @@ class CreateAttendsTable extends Migration
 
         Schema::enableForeignKeyConstraints();
 
-        Schema::table('feedback', function (Blueprint $table) {
+        Schema::table('attends', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(['user_id','event_id']);
