@@ -1,0 +1,1 @@
+<div id="copyright text-right">© Fundatia Gabriela Tudor - toate drepturile rezervate</div>

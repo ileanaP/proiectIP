@@ -1,14 +1,24 @@
+<!doctype html>
 <html>
 <head>
-    <title>Spectacole Dans - @yield('title')</title>
+    @include('includes.head')
 </head>
 <body>
-@section('sidebar')
-    This is the master sidebar.
-@show
-
 <div class="container">
-    @yield('content')
+    <header class="row">
+        @include('includes.header')
+    </header>
+
+    <div id="main" class="row">
+
+        @yield('content')
+
+    </div>
+
+    <footer class="row">
+        @include('includes.footer')
+    </footer>
+
 </div>
 </body>
 </html>
