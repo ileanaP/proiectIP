@@ -15,6 +15,8 @@
                 <li id="home"><a href="/">Home</a></li>
                 <li><a id="register" href="/register">Inregistrare</a></li>
                 <li><a id="login" href="/login">Autentificare</a></li>
+                <li><a id="upcomingEvents" href="/upcomingEvents">Evenimente viitoare</a></li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">

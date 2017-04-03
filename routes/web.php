@@ -24,3 +24,9 @@ Route::get('login', function()
 {
     return view('pages.login');
 });
+
+
+Route::get('upcomingEvents', function()
+{
+    return view('pages.upcomingEvents');
+});

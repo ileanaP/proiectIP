@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    @include('includes.headEvents')
+    @include('includes.head')
 </head>
 <body>
 <div class="container">
