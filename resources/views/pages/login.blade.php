@@ -1,41 +1,50 @@
-@extends('layouts.master')
+@extends('layouts.form')
 @section('content')
 
-    <div class="text-center" style="padding:50px 0">
-        <div class="logo">login</div>
-        <!-- Main Form -->
-        <div class="login-form-1">
-            <form id="login-form" class="text-left">
-                <div class="login-form-main-message"></div>
-                <div class="main-login-form">
-                    <div class="login-group">
-                        <div class="form-group">
-                            <label for="lg_username" class="sr-only">Username</label>
-                            <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Login to our site</h3>
+                            <p>Enter your username and password to log on:</p>
                         </div>
-                        <div class="form-group">
-                            <label for="lg_password" class="sr-only">Password</label>
-                            <input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
-                        </div>
-                        <div class="form-group login-group-checkbox">
-                            <input type="checkbox" id="lg_remember" name="lg_remember">
-                            <label for="lg_remember">remember</label>
+                        <div class="form-top-right">
+                            <i class="fa fa-lock"></i>
                         </div>
                     </div>
-                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                    <div class="form-bottom">
+                        <form role="form" action="login" method="post" class="login-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="form-username">Username</label>
+                                <input type="text" name="username" id="username" placeholder="Username..." class="form-username form-control" id="form-username">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-password">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Password..." class="form-password form-control" id="form-password">
+                            </div>
+                            <button type="submit" class="btn">Sign in!</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="etc-login-form">
-                    <p>forgot your password? <a href="#">click here</a></p>
-                    <p>new user? <a href="#">create new account</a></p>
-                </div>
-            </form>
+            </div>
         </div>
-        <!-- end:Main Form -->
     </div>
 
+</div>
 
-    <script type="text/javascript">
-        $("#login").attr('class', 'active');
-    </script>
+
+<!-- Javascript -->
+<script src="../resources/assetsLogin/js/jquery-1.11.1.min.js"></script>
+<script src="../resources/assetsLogin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../resources/assetsLogin/js/jquery.backstretch.min.js"></script>
+<script src="../resources/assetsLogin/js/scripts.js"></script>
+
+<!--[if lt IE 10]>
+<script src="../resources/assetsLogin/js/placeholder.js"></script>
+<![endif]-->
 
 @stop
