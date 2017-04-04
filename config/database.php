@@ -50,7 +50,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'strict' => true,
+            'strict' => false, /*'strict' set to 'true' is the default value for Laravel ^5.3*/
             'engine' => null,
         ],
 

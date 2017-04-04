@@ -5,13 +5,13 @@
 <title>Evenimente dans - Fundatia Gabriela Tudor</title>
 
 
-<link href="../resources/assetsEvents/css/bootstrap.css" rel='stylesheet' type='text/css' />
+{{ Html::style('css/bootstrap.css') }}
 <!-- Custom Theme files -->
-<link href="../resources/assetsEvents/css/style.css" rel='stylesheet' type='text/css' />
-<script src="../resources/assetsEvents/js/jquery-1.11.1.min.js"></script>
-<script src="../resources/assetsEvents/js/simpleCart.min.js"> </script>
+{{ Html::style('css/style.css') }}
+{{ Html::script('js/jquery-1.11.1.min.js') }}
+{{ Html::script('simpleCart.min.js') }}
 
-<!--banner-slider-->
+<!--banner-slider--><!-- ce face banner-slider-ul? :)) Ileana -->
 <div class="banner two">
 </div>
 </div>

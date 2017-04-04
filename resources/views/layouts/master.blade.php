@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    @include('includes.headEvents')
+    @include('includes.headMaster')
+    @include('includes.head')
 </head>
 <body>
 <div class="container">
