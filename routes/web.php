@@ -32,6 +32,11 @@ Route::get('loginn', function()
     return view('pages.login');
 });
 
+Route::get('events', function()
+{
+    return view('pages.events');
+});
+
 Auth::routes();
 
 Route::get('logout', [
