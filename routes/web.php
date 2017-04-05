@@ -32,11 +32,11 @@ Route::get('loginn', function()
     return view('pages.login');
 });
 
-Route::get('/account/sign-out', array(
-    'as' => 'account-sign-out',
-    'uses' => 'LogoutController@logout'
-));
-
 Auth::routes();
+
+Route::get('logout', [
+    'as' => 'account-sign-out',
+    'uses' => 'Auth\LoginController@logout'
+]);
 
 Route::get('/home', 'HomeController@index');

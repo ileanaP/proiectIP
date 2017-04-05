@@ -32,7 +32,9 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="../navbar/">Default</a></li>
-                <li><a href="logout">Dezauntentificare</a></li>
+                <li><!--<form id="logout-form" method="post"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Logout</a></form>-->
+                    <a href="logout">Logout</a></li>
                 <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
             </ul>
         </div><!--/.nav-collapse -->
