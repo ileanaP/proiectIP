@@ -16,6 +16,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('category')->unsigned();
             $table->string('location');
             $table->integer('price');
             $table->text('desc');
@@ -30,6 +31,7 @@ class CreateEventsTable extends Migration
 
         Schema::table('events', function (Blueprint $table) {
             $table->foreign('org_id')->references('id')->on('org')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
