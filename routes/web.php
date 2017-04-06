@@ -34,7 +34,10 @@ Route::get('loginn', function()
 
 Route::get('events', function()
 {
-    return view('pages.events');
+
+    $events = DB::table('events')->get();
+
+    return view('pages.events', compact('events'));
 });
 
 Auth::routes();
