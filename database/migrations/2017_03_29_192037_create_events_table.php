@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->text('desc');
             $table->string('picture');
             $table->string('link');
-            $table->time('data');
+            $table->timestamp('data');
             $table->integer('org_id')->unsigned();
             $table->timestamps();
         });

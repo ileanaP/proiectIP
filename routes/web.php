@@ -40,6 +40,11 @@ Route::get('events', function()
     return view('pages.events', compact('events'));
 });
 
+Route::get('eventpage', function()
+{
+    return view('pages.eventPage');
+});
+
 Auth::routes();
 
 Route::get('logout', [
