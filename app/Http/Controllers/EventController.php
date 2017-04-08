@@ -14,6 +14,16 @@ class EventController extends Controller
         $pics = DB::table('pictures')->where('event_id',$id)->get();
         $n = count($pics); // the number of pictures for a particular event
         $org = DB::table('org')->where('id',$event[0]->org_id)->get();
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org'));
+
+        $attendees_id = DB::table('attends')->where('event_id',$id)->get();
+
+        $usrid = array();
+        foreach($attendees_id as $a){
+            $usrid[] = $a->user_id;
+        }
+
+        $attendees = DB::table('users')->whereIn('id',$usrid)->get(array('user'));
+
+        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'attendees'));
     }
 }

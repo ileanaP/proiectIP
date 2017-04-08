@@ -3,7 +3,7 @@
 
     <div class="row">
 
-        @include('layouts.sidebar');
+        @include('layouts.sidebar')
 
         <div class="col-md-9">
 
@@ -50,12 +50,18 @@
                 </div>
                 <div class="caption-full">
                     @if (Auth::check())
-                        <a class="btn btn-danger pull-right">Inscriere</a>
+                        <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Inscriere</a>
                     @else
                         <a class="btn btn-default disabled pull-right">Inscriere</a>
                     @endif
                     <h4>Organizator</h4>
                     <p>{{ $org[0]->name }}</p>
+                    <h4>Participanti</h4>
+                    <ul>
+                    @foreach($attendees as $a)
+                        <li>{{ $a->user }}</li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
 

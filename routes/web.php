@@ -42,6 +42,9 @@ Route::get('events', function()
 
 Route::get('eventpage', 'EventController@index')->name('eventpage');
 
+Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
+
+
 Auth::routes();
 
 Route::get('logout', [
