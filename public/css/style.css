@@ -2,6 +2,10 @@ body {
     padding-top: 70px;
 }
 
+.panel-footer.panel-custom {
+    background: #FCFCFC;
+}
+
 /*@media screen and (min-width:768px){*/
     /*.navbar-brand-centered {*/
         /*position: absolute;*/

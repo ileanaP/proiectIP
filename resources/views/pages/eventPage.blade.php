@@ -15,19 +15,18 @@
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                @for($i = 1; $i < $n; $i++)
+                                <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}"></li>
+                                @endfor
                             </ol>
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+
+                                @foreach($pics as $i => $pic)
+                                <div @if($i == 0) class="item active" @else class="item" @endif>
+                                    {{ Html::image('img/'.$pic->picture, '', array('class' => 'slide-image')) }}
                                 </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
+                                @endforeach
+
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -40,85 +39,29 @@
 
                 </div>
 
+
                 <div class="caption-full">
-                    <a class="btn btn-success pull-right">Inscriere</a>
-                    <h4 class="pull-right">$24.99</h4>
-                    <h4><a href="#">Product Name</a>
+                    <h4 class="pull-right">{{$event[0]->price}} RON</h4>
+                    <h4><a href="#">{{$event[0]->name}}</a>
                     </h4>
-                    <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                    <p>Want to make these reviews work? Check out
-                        <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                        </strong>over at maxoffsky.com!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <p><strong>Data: </strong> {{ $event[0]->data }}</p>
+                    <p>{{ $event[0]->desc }}</p>
+                    <p>More info: <a target="_blank" href="{{ $event[0]->link }}">{{ $event[0]->link }}</a>.</p>
                 </div>
-                <div class="ratings">
-                    <p class="pull-right">3 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        4.0 stars
-                    </p>
+                <div class="caption-full">
+                    @if (Auth::check())
+                        <a class="btn btn-danger pull-right">Inscriere</a>
+                    @else
+                        <a class="btn btn-default disabled pull-right">Inscriere</a>
+                    @endif
+                    <h4>Organizator</h4>
+                    <p>{{ $org[0]->name }}</p>
                 </div>
             </div>
 
-            <div class="well">
-
-                <div class="text-right">
-                    <a class="btn btn-success">Leave a Review</a>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span class="pull-right">10 days ago</span>
-                        <p>This product was great in terms of quality. I would definitely buy another!</p>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span class="pull-right">12 days ago</span>
-                        <p>I've alredy ordered another one!</p>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span class="pull-right">15 days ago</span>
-                        <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                    </div>
-                </div>
-
-            </div>
 
         </div>
 
     </div>
-    
+
 @stop

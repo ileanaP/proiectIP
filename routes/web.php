@@ -40,10 +40,7 @@ Route::get('events', function()
     return view('pages.events', compact('events'));
 });
 
-Route::get('eventpage', function()
-{
-    return view('pages.eventPage');
-});
+Route::get('eventpage', 'EventController@index')->name('eventpage');
 
 Auth::routes();
 
