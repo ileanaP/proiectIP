@@ -22,7 +22,12 @@ class EventController extends Controller
             $usrid[] = $a->user_id;
         }
 
-        $attendees = DB::table('users')->whereIn('id',$usrid)->get(array('user'));
+        $attendees_db = DB::table('users')->whereIn('id',$usrid)->get(array('user'));
+
+        $attendees = array();
+        foreach($attendees_db as $a){
+            array_push($attendees,$a->user);
+    }
 
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'attendees'));
     }

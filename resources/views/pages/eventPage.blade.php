@@ -50,7 +50,11 @@
                 </div>
                 <div class="caption-full">
                     @if (Auth::check())
-                        <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Inscriere</a>
+                        @if(in_array(Auth::user()->user,$attendees))
+                            <a class="btn btn-default disabled pull-right">Inscriere</a>
+                        @else
+                            <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Inscriere</a>
+                        @endif
                     @else
                         <a class="btn btn-default disabled pull-right">Inscriere</a>
                     @endif
@@ -59,7 +63,7 @@
                     <h4>Participanti</h4>
                     <ul>
                     @foreach($attendees as $a)
-                        <li>{{ $a->user }}</li>
+                        <li>{{ $a }}</li>
                     @endforeach
                     </ul>
                 </div>
