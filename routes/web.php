@@ -43,7 +43,7 @@ Route::get('events', function()
 Route::get('eventpage', 'EventController@index')->name('eventpage');
 
 Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
-
+Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttendEvent');
 
 Auth::routes();
 

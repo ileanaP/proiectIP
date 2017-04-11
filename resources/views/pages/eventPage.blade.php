@@ -51,12 +51,12 @@
                 <div class="caption-full">
                     @if (Auth::check())
                         @if(in_array(Auth::user()->user,$attendees))
-                            <a class="btn btn-default disabled pull-right">Inscriere</a>
+                            <a class="btn btn-default pull-right" href="{{ route('notAttendEvent', ['id' => $id] ) }}">Nu mai particip</a>
                         @else
-                            <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Inscriere</a>
+                            <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Participa</a>
                         @endif
                     @else
-                        <a class="btn btn-default disabled pull-right">Inscriere</a>
+                        <a class="btn btn-default disabled pull-right">Participa</a>
                     @endif
                     <h4>Organizator</h4>
                     <p>{{ $org[0]->name }}</p>

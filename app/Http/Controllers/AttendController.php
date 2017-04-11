@@ -3,24 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Auth;
-use Carbon\Carbon;
+use App\Attend;
 
 class AttendController extends Controller
 {
     public function attendEvent(Request $request){
         $id = $request->query('id');
-        $event = $id;
         $user = Auth::user();
-        $user_id = $user->id;
 
-        DB::table('attends')->insert([
-            'user_id' => $user_id,
-            'event_id' => $event,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        $attend = new Attend;
+        $attend->user_id = $user->id;
+        $attend->event_id = $id;
+        $attend->save();
+
+        /*
+         * am creat un model pentru a insera date in baza de date
+         */
+
+        return redirect()->route('eventpage', ['id' => $id]);
+    }
+
+    public function notAttendEvent(Request $request){
+        $id = $request->query('id');
+        $user = Auth::user();
+        $attend = Attend::where('user_id',$user->id)->where('event_id',$id);
+        $attend->delete();
 
         return redirect()->route('eventpage', ['id' => $id]);
     }
