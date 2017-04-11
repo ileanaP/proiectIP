@@ -32,15 +32,8 @@ Route::get('loginn', function()
     return view('pages.login');
 });
 
-Route::get('events', function()
-{
-
-    $events = DB::table('events')->get();
-
-    return view('pages.events', compact('events'));
-});
-
-Route::get('eventpage', 'EventController@index')->name('eventpage');
+Route::get('events', 'EventsController@mainList')->name('events');
+Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');
 
 Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
 Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttendEvent');

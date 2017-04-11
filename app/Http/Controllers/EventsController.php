@@ -1,13 +1,30 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use Illuminate\Support\Facades\DB;
+use App\Event;
 
-class EventController extends Controller
+class EventsController extends Controller
 {
+    public function mainList(Request $request){
+        if($request->has('id')){
+            $events = Event::where('category',$request->query('id'))->get();
+        } else {
+            $events = Event::all();
+        }
+        return view('pages.events', compact('events'));
+    }
 
-    public function index(Request $request)
+    public function searchEventByCategory(Request $request){
+        $id = $request->query('id');
+        $events = Event::where('category',$id);
+        return view('pages.events', compact('events'));
+    }
+
+    public function eventPage(Request $request)
     {
         $id = $request->query('id');
         $event = DB::table('events')->where('id',$id)->get();
@@ -27,7 +44,7 @@ class EventController extends Controller
         $attendees = array();
         foreach($attendees_db as $a){
             array_push($attendees,$a->user);
-    }
+        }
 
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'attendees'));
     }
