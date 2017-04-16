@@ -50,8 +50,12 @@
                 </div>
                 <div class="caption-full">
                     @if (Auth::check())
-                        @if(in_array(Auth::user()->user,$attendees))
-                            <a class="btn btn-default pull-right" href="{{ route('notAttendEvent', ['id' => $id] ) }}">Nu mai particip</a>
+                        @if (!$attendees->isEmpty())
+                            @if(in_array(Auth::user()->user,$attendees))
+                                <a class="btn btn-default pull-right" href="{{ route('notAttendEvent', ['id' => $id] ) }}">Nu mai particip</a>
+                            @else
+                                <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Participa</a>
+                            @endif
                         @else
                             <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Participa</a>
                         @endif
@@ -61,11 +65,15 @@
                     <h4>Organizator</h4>
                     <p>{{ $org[0]->name }}</p>
                     <h4>Participanti</h4>
-                    <ul>
-                    @foreach($attendees as $a)
-                            <li><a href="{{ route('profile', ['id' => $a->id] ) }}">{{ $a->user }}</a></li>
-                    @endforeach
-                    </ul>
+                    @if(!$attendees->isEmpty())
+                        <ul>
+                            @foreach($attendees as $a)
+                                    <li><a href="{{ route('profile', ['id' => $a->id] ) }}">{{ $a->user }}</a></li>
+                            @endforeach
+                        </ul>
+                    @else
+                         <p>Acest eveniment nu are momentan participanti</p>
+                    @endif
                 </div>
             </div>
 
