@@ -1,3 +1,36 @@
+<strong>Service Provider</strong>
+<p>Pentru a lua categoriile din baza de date:
+<li> am creat migratia "categories"</li>
+<li> am creat modelul Category (App\Category.php)</li>
+<li> am creat un nou Service Provider (App\Providers\ViewComposerServiceProvider:
+aici vom pune toate comenzile $view->composer() de care vom avea nevoie pentru a trimite date
+din baza de date catre view-uri)</li>
+<li> am importat modelul Category in noul SP</li>
+<li> am creat o functie composeSidebar() pe care o apelez in functia boot a provider-ului
+(cea care se apeleaza atunci cand se afiseaza un view),
+in care am apelat metoda composer() a variabilei $view corespunzatoare acestei pagini (layouts.sidebar)</li>
+<li> am inregistrat noul SP in config\app.php</li></p>
+
+<strong>Migrations</strong>
+<p> Pentru a referntia o cheie externa din tabelul Y in tabelul X, time-stamp-ul de creare
+al tabelului Y trebuie sa fie mai mic decat cel al tabelului X
+(deci prima data sa creezi tabelul Y, apoi tabelul X xD). Pentru a modifica
+timestamp-ul:
+<li>mergi in folderul "migrations" din database\migrations in
+folder explorer</li>
+<li>modifici timestamp-urile manual (timestamp-urile sunt de forma
+2017_03_29_192037, unde 2017_03_29_000000 reprezinta prima secunda
+din ziua 29 martie, 2017</li></p>
+
+<strong>Sidebar</strong>
+<p>Sidebar-ul din events list este in resources\layouts, dar ar trebui
+sa fie in resources\includes</p>
+
+<strong>"use.."</strong>
+<p>Pentru a include modele/controllere sau pentru a accesa directoare
+in git bash (sau prin php artisan) se foloseste "<strong>\</strong>",
+daca folosesti "<strong>/</strong>" iti da eroare
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

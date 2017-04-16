@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Event;
+use App\User;
+use App\Attend;
 
 class EventsController extends Controller
 {
@@ -32,19 +34,13 @@ class EventsController extends Controller
         $n = count($pics); // the number of pictures for a particular event
         $org = DB::table('org')->where('id',$event[0]->org_id)->get();
 
-        $attendees_id = DB::table('attends')->where('event_id',$id)->get();
-
+        //$attendees_id = DB::table('attends')->where('event_id',$id)->get();
+        $attendees_id = Attend::where('event_id',$id)->get();
         $usrid = array();
         foreach($attendees_id as $a){
             $usrid[] = $a->user_id;
         }
-
-        $attendees_db = DB::table('users')->whereIn('id',$usrid)->get(array('user'));
-
-        $attendees = array();
-        foreach($attendees_db as $a){
-            array_push($attendees,$a->user);
-        }
+        $attendees = User::find($usrid);
 
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'attendees'));
     }

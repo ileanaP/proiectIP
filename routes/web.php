@@ -34,9 +34,10 @@ Route::get('loginn', function()
 
 Route::get('events', 'EventsController@mainList')->name('events');
 Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');
-
 Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
 Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttendEvent');
+
+Route::get('profile', 'UserProfileController@main')->name('profile');
 
 Auth::routes();
 

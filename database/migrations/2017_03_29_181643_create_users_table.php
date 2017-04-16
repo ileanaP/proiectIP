@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('surname')->nullale();
             $table->boolean('active')->nullable();
             $table->integer('type')->unsigned()->default(4);
+            $table->integer('location')->unsigned()->default(0);
+            $table->string('avatar')->default('avatar_0000.jpg');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,6 +33,7 @@ class CreateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             //$table->engine('InnoDB');
             $table->foreign('type')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('location')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

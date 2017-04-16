@@ -16,6 +16,7 @@
                 <li><a id="register" href="/register">Inregistrare</a></li>
                 <li><a id="login" href="/login">Autentificare</a></li>
                 <li><a id="upcomingEvents" href="/events">Evenimente</a></li>
+                <li><a id="profile" href="/profile">Profil</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

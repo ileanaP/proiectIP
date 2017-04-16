@@ -63,7 +63,7 @@
                     <h4>Participanti</h4>
                     <ul>
                     @foreach($attendees as $a)
-                        <li>{{ $a }}</li>
+                            <li><a href="{{ route('profile', ['id' => $a->id] ) }}">{{ $a->user }}</a></li>
                     @endforeach
                     </ul>
                 </div>

@@ -2,6 +2,12 @@ $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
 });
 
+
+/*************************************************************
+*
+* read more in Events page stuff
+*
+*************************************************************/
 $(function(){ /* to make sure the script runs after page load */
 
     $('.read-more').each(function(event){ /* select all divs with the item class */
@@ -30,4 +36,17 @@ $(function(){ /* to make sure the script runs after page load */
     });
 
 
+});
+
+/*************************************************************
+*
+* user profile stuff
+*
+*************************************************************/
+$(document).ready(function() {
+    $(".btn-pref .btn").click(function () {
+        $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+        // $(".tab").addClass("active"); // instead of this do the below
+        $(this).removeClass("btn-default").addClass("btn-primary");
+    });
 });

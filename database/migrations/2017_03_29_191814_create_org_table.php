@@ -19,6 +19,7 @@ class CreateOrgTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->integer('user_id')->unsigned();
+            $table->integer('location')->unsigned()->default(0);
             $table->timestamps();
         });
 
@@ -26,6 +27,7 @@ class CreateOrgTable extends Migration
 
         Schema::table('org', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('location')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
