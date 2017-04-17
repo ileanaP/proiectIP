@@ -51,7 +51,7 @@
                 <div class="caption-full">
                     @if (Auth::check())
                         @if (!$attendees->isEmpty())
-                            @if(in_array(Auth::user()->user,$attendees))
+                            @if(in_array(Auth::user()->id,$usrid))
                                 <a class="btn btn-default pull-right" href="{{ route('notAttendEvent', ['id' => $id] ) }}">Nu mai particip</a>
                             @else
                                 <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Participa</a>

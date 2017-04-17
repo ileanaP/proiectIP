@@ -42,6 +42,6 @@ class EventsController extends Controller
         }
         $attendees = User::find($usrid);
 
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'attendees'));
+        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
     }
 }
