@@ -31,6 +31,17 @@ sa fie in resources\includes</p>
 in git bash (sau prin php artisan) se foloseste "<strong>\</strong>",
 daca folosesti "<strong>/</strong>" iti da eroare
 
+<strong>Ce a cauzat bug #4</strong>
+<p>Nu poti folosi functia in_array pe un set de date luat din baza
+de date cu ajutorul unui model, pentru ca e un obiect, nu un array. De
+asemenea, nu poti folosi ->isEmpty() pe un array, pentru ca este o
+functie destinata obiectelor. Dar aveam nevoie de un obiect pentru a
+afisa numele user-ilor si pentru a accesa pagina de utilizator a acestora
+din lista de participanti. Solutia a fost deci sa transmit array-ul
+usrid din EventsController@eventPage view-ului pages.eventPage, sa folosesc 
+pentru in_array array-ul $usrid, si pentru ->isEmpty() obiectul 
+$attendees
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
