@@ -40,7 +40,9 @@ afisa numele user-ilor si pentru a accesa pagina de utilizator a acestora
 din lista de participanti. Solutia a fost deci sa transmit array-ul
 usrid din EventsController@eventPage view-ului pages.eventPage, sa folosesc 
 pentru in_array array-ul $usrid, si pentru ->isEmpty() obiectul 
-$attendees
+$attendees</p>
+<p>SAU am uitat sa adaug ->get() cand am luat user-ul din baza
+de date cu ajutorul functiei User::find(...) (de studiat)</p>
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
