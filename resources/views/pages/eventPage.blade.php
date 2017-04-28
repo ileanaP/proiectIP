@@ -8,7 +8,7 @@
         <div class="col-md-9">
 
             <div>
-
+                @if(count($pics) > 0)
                 <div class="row carousel-holder">
 
                     <div class="col-md-12">
@@ -36,9 +36,8 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-
+                @endif
 
                 <div class="caption-full">
                     <h4 class="pull-right">{{$event[0]->price}} RON</h4>
