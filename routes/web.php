@@ -22,17 +22,15 @@ Route::get('upcomingEvents', function()
     return view('pages.upcomingEvents');
 });
 
-Route::get('registerr', function()
-{
-    return view('pages.register');
-});
 
-Route::get('loginn', function()
+Route::get('addEventForm', function()
 {
-    return view('pages.login');
+    return view('pages.addEvent');
 });
 
 Route::get('events', 'EventsController@mainList')->name('events');
+
+Route::post('addEvent', 'EventsController@addEvent')->name('addEvent');
 Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');
 Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
 Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttendEvent');

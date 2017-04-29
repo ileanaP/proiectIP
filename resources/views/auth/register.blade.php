@@ -74,4 +74,15 @@
         </div>
     </div>
 </div>
+
+<!-- Javascript -->
+<script src="../resources/assetsLogin/js/jquery-1.11.1.min.js"></script>
+<script src="../resources/assetsLogin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../resources/assetsLogin/js/jquery.backstretch.min.js"></script>
+<script src="../resources/assetsLogin/js/scripts.js"></script>
+
+<!--[if lt IE 10]>
+<script src="../resources/assetsLogin/js/placeholder.js"></script>
+<![endif]-->
+
 @endsection

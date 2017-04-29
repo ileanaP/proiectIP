@@ -16,6 +16,7 @@
                 <li><a id="register" href="/register">Inregistrare</a></li>
                 <li><a id="login" href="/login">Autentificare</a></li>
                 <li><a id="upcomingEvents" href="/events">Evenimente</a></li>
+                <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
                 <li><a id="profile" href="/profile">Profil</a></li>
 
                 <li class="dropdown">
