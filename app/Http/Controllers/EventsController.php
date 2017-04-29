@@ -52,18 +52,32 @@ class EventsController extends Controller
 
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
     }
+
+    public function addEventForm(Request $request)
+    {
+        $organizersInfo = DB::table('org')->get();
+
+        $orgIds = [];
+        foreach ($organizersInfo as $organizerInfo) {
+            $orgIds[] = $organizerInfo->user_id;
+        }
+
+        return view('pages.addEvent', compact('orgIds'));
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function addEvent(Request $request)
     {
-        $titleEvent = $_POST['title'];
-        $descriptionEvent = $_POST['description'];
-        $link = $_POST['link'];
-        $price = $_POST['price'];
-        $address = $_POST['address'];
-        $categoryId = $_POST['categoryId'];
+        $titleEvent = $request->get('title');
+        $descriptionEvent = $request->get('description');
+        $link = $request->get('link');
+        $price = $request->get('price');
+        $address = $request->get('address');
+        $categoryId = $request->get('categoryId');
+        $imageName = $request->get('image');
 
         $userId = $request->user()->id;
 
@@ -76,14 +90,16 @@ class EventsController extends Controller
             'name' => $titleEvent,
             'org_id' => $organizerInfo[0]->id,
             'price' => $price,
-            'link' => $link
+            'link' => $link,
+            'picture' => $imageName
         ];
 
         DB::table('events')->insert($data);
 
-        return view('pages.addEvent');
-    }
+        $request = new Request();
+        return $this->addEventForm($request);
 
+    }
 
 
 }

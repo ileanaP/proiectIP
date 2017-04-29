@@ -42,6 +42,10 @@
                                     <input type="text" name="link" id="link" class="form-username form-control">
                                 </div>
 
+                                <div class="form-group">Adauga o imagine reprezentativa:
+
+                                {!! Form::file('image', null) !!}
+
                                 <button type="submit" class="btn btn-primary">
                                     Submit
                                 </button>

@@ -21,10 +21,7 @@ Route::get('upcomingEvents', function()
 });
 
 
-Route::get('addEventForm', function()
-{
-    return view('pages.addEvent');
-});
+Route::get('addEventForm', 'EventsController@addEventForm');
 
 Route::get('events', 'EventsController@mainList')->name('events');
 
