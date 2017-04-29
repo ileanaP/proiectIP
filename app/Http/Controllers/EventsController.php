@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Event;
 use App\User;
@@ -11,7 +10,8 @@ use App\Attend;
 
 class EventsController extends Controller
 {
-    public function mainList(Request $request){
+    public function mainList(Request $request)
+    {
         if($request->has('id')){
             $events = Event::where('category',$request->query('id'))->get();
         } else {
@@ -20,7 +20,8 @@ class EventsController extends Controller
         return view('pages.events', compact('events'));
     }
 
-    public function searchEventByCategory(Request $request){
+    public function searchEventByCategory(Request $request)
+    {
         $id = $request->query('id');
         $events = Event::where('category',$id);
         return view('pages.events', compact('events'));
@@ -34,7 +35,6 @@ class EventsController extends Controller
         $n = count($pics); // the number of pictures for a particular event
         $org = DB::table('org')->where('id',$event[0]->org_id)->get();
 
-        //$attendees_id = DB::table('attends')->where('event_id',$id)->get();
         $attendees_id = Attend::where('event_id',$id)->get();
         $usrid = array();
         foreach($attendees_id as $a){
@@ -44,4 +44,7 @@ class EventsController extends Controller
 
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
     }
+
+
+
 }
