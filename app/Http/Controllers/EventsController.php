@@ -59,14 +59,14 @@ class EventsController extends Controller
 
         $userId = $request->user()->id;
 
-        $organizatorInfo = DB::table('org')->where('user_id', $userId)->get();
+        $organizerInfo = DB::table('org')->where('user_id', $userId)->get();
 
         $data = [
             'address' => $address,
             'category' => $categoryId,
             'desc' => $descriptionEvent,
             'name' => $titleEvent,
-            'org_id' => $organizatorInfo[0]->id,
+            'org_id' => $organizerInfo[0]->id,
             'price' => $price,
             'link' => $link
         ];
