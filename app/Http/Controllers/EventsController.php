@@ -12,8 +12,8 @@ class EventsController extends Controller
 {
     public function mainList(Request $request)
     {
-        if($request->has('id')){
-            $events = Event::where('category',$request->query('id'))->get();
+        if($request->has('id')) {
+            $events = Event::where('category', $request->query('id'))->get();
         } else {
             $events = Event::all();
         }
@@ -38,7 +38,7 @@ class EventsController extends Controller
         $org = DB::table('org')->where('id',$event[0]->org_id)->get();
 
         $attendees_id = Attend::where('event_id',$id)->get();
-        $usrid = array();
+        $usrid = [];
         foreach($attendees_id as $a){
             $usrid[] = $a->user_id;
         }
@@ -68,7 +68,7 @@ class EventsController extends Controller
         $categoryId = $request->get('categoryId');
         $imageName = 'image_' . $titleEvent . '.jpg';
 
-        $request->file('image')->storeAs('/public/img', $imageName);
+        $request->file('image')->move('img/', $imageName);
 
         $userId = $request->user()->id;
 

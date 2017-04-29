@@ -21,8 +21,8 @@
                             </ol>
                             <div class="carousel-inner">
 
-                                @foreach($pics as $i => $pic)
-                                <div @if($i == 0) class="item active" @else class="item" @endif>
+                                @foreach ($pics as $i => $pic)
+                                <div @if ($i == 0) class="item active" @else class="item" @endif>
                                     {{ Html::image('img/' . $pic->picture, '', array('class' => 'slide-image')) }}
                                 </div>
                                 @endforeach

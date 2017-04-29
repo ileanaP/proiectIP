@@ -18,8 +18,9 @@
 
                                 @include('layouts.categoryList')
                                 <br><br>
-
-                                <div class="form-group">Titlu:
+<br>
+                                <div>Titlu:</div>
+                                <div class="form-group">
                                     <input type="text" name="title" id="title" class="form-username form-control">
                                 </div>
 
