@@ -13,9 +13,7 @@
 
 use App\Http\Middleware\LogoutRedirect;
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', 'HomeController@index');
 
 Route::get('upcomingEvents', function()
 {
@@ -45,3 +43,4 @@ Route::get('logout', [
 ]);
 
 Route::get('/home', 'HomeController@index');
+
