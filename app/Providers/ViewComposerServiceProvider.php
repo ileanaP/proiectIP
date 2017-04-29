@@ -31,5 +31,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer('layouts.sidebar', function($view){
             $view->with('categories', Category::all());
         });
+
+        view()->composer('layouts.categoryList', function($view){
+            $view->with('categories', Category::all());
+        });
     }
 }

@@ -44,6 +44,37 @@ class EventsController extends Controller
 
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
     }
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addEvent(Request $request)
+    {
+        $titleEvent = $_POST['title'];
+        $descriptionEvent = $_POST['description'];
+        $link = $_POST['link'];
+        $price = $_POST['price'];
+        $address = $_POST['address'];
+        $categoryId = $_POST['categoryId'];
+
+        $userId = $request->user()->id;
+
+        $organizatorInfo = DB::table('org')->where('user_id', $userId)->get();
+
+        $data = [
+            'address' => $address,
+            'category' => $categoryId,
+            'desc' => $descriptionEvent,
+            'name' => $titleEvent,
+            'org_id' => $organizatorInfo[0]->id,
+            'price' => $price,
+            'link' => $link
+        ];
+
+        DB::table('events')->insert($data);
+
+        return view('pages.addEvent');
+    }
 
 
 
