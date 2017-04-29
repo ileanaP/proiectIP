@@ -7,7 +7,8 @@ use App\Location;
 
 class UserProfileController extends Controller
 {
-    public function main(Request $request){
+    public function main(Request $request)
+    {
         $user_id = $request->query('id');
         $user = User::where('id',$user_id)->get();
         $location = Location::where('id',$user[0]->location)->get();
