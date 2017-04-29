@@ -17,7 +17,15 @@ class EventsController extends Controller
         } else {
             $events = Event::all();
         }
-        return view('pages.events', compact('events'));
+
+        $organizersInfo = DB::table('org')->get();
+
+        $orgIds = [];
+        foreach ($organizersInfo as $organizerInfo) {
+            $orgIds[] = $organizerInfo->user_id;
+        }
+
+        return view('pages.events', compact('events', 'orgIds'));
     }
 
     public function searchEventByCategory(Request $request)

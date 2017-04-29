@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -17,12 +17,17 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('pages.home');
+        $organizersInfo = DB::table('org')->get();
+
+        $orgIds = [];
+        foreach ($organizersInfo as $organizerInfo) {
+            $orgIds[] = $organizerInfo->user_id;
+        }
+
+        return view('pages.home', compact('orgIds'));
     }
 }
