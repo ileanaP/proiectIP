@@ -23,7 +23,7 @@
 
                                 @foreach($pics as $i => $pic)
                                 <div @if($i == 0) class="item active" @else class="item" @endif>
-                                    {{ Html::image('img/'.$pic->picture, '', array('class' => 'slide-image')) }}
+                                    {{ Html::image('img/' . $pic->picture, '', array('class' => 'slide-image')) }}
                                 </div>
                                 @endforeach
 

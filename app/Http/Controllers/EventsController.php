@@ -18,13 +18,7 @@ class EventsController extends Controller
             $events = Event::all();
         }
 
-        $organizersInfo = DB::table('org')->get();
-
-        $orgIds = [];
-        foreach ($organizersInfo as $organizerInfo) {
-            $orgIds[] = $organizerInfo->user_id;
-        }
-
+        $orgIds = $this->getOrgIds();
         return view('pages.events', compact('events', 'orgIds'));
     }
 
@@ -50,18 +44,13 @@ class EventsController extends Controller
         }
         $attendees = User::find($usrid);
 
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
+        $orgIds = $this->getOrgIds();
+        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'orgIds', 'usrid', 'attendees'));
     }
 
     public function addEventForm(Request $request)
     {
-        $organizersInfo = DB::table('org')->get();
-
-        $orgIds = [];
-        foreach ($organizersInfo as $organizerInfo) {
-            $orgIds[] = $organizerInfo->user_id;
-        }
-
+        $orgIds = $this->getOrgIds();
         return view('pages.addEvent', compact('orgIds'));
     }
 
@@ -77,7 +66,9 @@ class EventsController extends Controller
         $price = $request->get('price');
         $address = $request->get('address');
         $categoryId = $request->get('categoryId');
-        $imageName = $request->get('image');
+        $imageName = 'image_' . $titleEvent . '.jpg';
+
+        $request->file('image')->storeAs('/public/img', $imageName);
 
         $userId = $request->user()->id;
 
@@ -98,7 +89,18 @@ class EventsController extends Controller
 
         $request = new Request();
         return $this->addEventForm($request);
+    }
 
+    private function getOrgIds()
+    {
+        $organizersInfo = DB::table('org')->get();
+
+        $orgIds = [];
+        foreach ($organizersInfo as $organizerInfo) {
+            $orgIds[] = $organizerInfo->user_id;
+        }
+
+        return $orgIds;
     }
 
 

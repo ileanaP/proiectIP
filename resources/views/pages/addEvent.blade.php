@@ -13,7 +13,7 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                            <form role="form" action="{{ route('addEvent') }}" method="POST" class="login-form">
+                            <form role="form" action="{{ route('addEvent') }}" enctype="multipart/form-data" method="POST" class="login-form">
                                 {{ csrf_field() }}
 
                                 @include('layouts.categoryList')
@@ -44,7 +44,7 @@
 
                                 <div class="form-group">Adauga o imagine reprezentativa:
 
-                                {!! Form::file('image', null) !!}
+                                <input type="file" name="image" id="image">
 
                                 <button type="submit" class="btn btn-primary">
                                     Submit
