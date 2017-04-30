@@ -9,9 +9,12 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class RouteTest extends DuskTestCase
 {
     /**
-     * A basic browser test example.
+     * Scenario:
+     * No user is logged in in application
+     * User try to access home page (/ or /home)
      *
-     * @return void
+     * Expectation
+     * He is redirected to login form
      */
     public function testHomeRouteWhenNotLoggedIn()
     {
@@ -21,7 +24,64 @@ class RouteTest extends DuskTestCase
                     ->assertSee('Forgot Your Password?')
                     ->assertDontSee('Subscribe to our site');
         });
+
+
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/home')
+                ->assertSee('User / E-Mail')
+                ->assertSee('Forgot Your Password?')
+                ->assertDontSee('Subscribe to our site');
+        });
     }
+
+    /**
+     * Scenario:
+     * User try to login in application with correct credentials and submit form
+     *
+     * Expectation:
+     * He is redirected to homepage
+     *
+     * Then he logout and is redirected again to login form (we logout in order to reset setup for the next test)
+     */
+    public function testSuccessLogin()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->type('identifier', 'diana2@email.com')
+                ->type('password', '111111')
+                ->press('.submit')
+                ->assertSee('What We Do');
+        });
+
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/logout')
+                ->assertSee('User / E-Mail')
+                ->assertSee('Forgot Your Password?')
+                ->assertDontSee('Subscribe to our site');
+        });
+    }
+
+    /**
+     * Scenario:
+     * User try to login in application with wrong credentials and submit form
+     *
+     * Expectation:
+     * He is not redirected to homepage and stays in login page
+     */
+    public function testFailLogin()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->type('identifier', 'diana2@email.com')
+                ->type('password', '')
+                ->press('.submit')
+                ->assertSee('User / E-Mail')
+                ->assertSee('Forgot Your Password?')
+                ->assertDontSee('What We Do');
+        });
+
+    }
+
 
     public function testLoginRoute()
     {
@@ -47,9 +107,18 @@ class RouteTest extends DuskTestCase
     public function testUpcomingEventsRoute()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/upcomingEvents')
-                ->assertSee('Categorii disponibile');
+            $browser->visit('/')
+                ->type('identifier', 'diana2@email.com')
+                ->type('password', '111111')
+                ->press('.submit');
         });
+//
+//        $this->browse(function (Browser $browser) {
+//            $browser->visit('/upcomingEvents')
+//                ->assertSee('Categorii disponibile')
+//                ->assertDontSee('User / E-Mail')
+//                ->assertAuthenticated();
+//        });
     }
 
 
