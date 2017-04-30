@@ -38,7 +38,7 @@
                     <h3>This is tab 1</h3>
                 </div>
                 <div class="tab-pane fade in" id="tab2">
-                    <form role="form" action="{{ route('submitChanges') }}" method="POST" class="form-horizontal">
+                    <form role="form" action="{{ route('submitChanges') }}"  enctype="multipart/form-data" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
                         <fieldset>
 
@@ -105,20 +105,18 @@
 
                             <!-- File Button -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="avatar">Avatar</label>
+                                <label class="col-md-4 control-label" for="image">Avatar</label>
                                 <div class="col-md-4">
-                                    <input id="avatar" name="avatar" class="input-file" type="file">
+                                    <input id="image" name="image" class="input-file" type="file">
                                 </div>
                             </div>
 
-                            <!-- Button (Double) -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="button1id"></label>
+                                <label class="col-md-4 control-label" for="submit"></label>
                                 <div class="col-md-8">
-                                    <button type="submit" class="btn btn-success">
-                                        Salvati
+                                    <button type="submit" id="submit" class="btn btn-success">
+                                        Salvati modificarile
                                     </button>
-                                    <button id="button2id" name="button2id" class="btn btn-danger">Anulati</button>
                                 </div>
                             </div>
 

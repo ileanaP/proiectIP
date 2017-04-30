@@ -52,6 +52,12 @@ class UserProfileController extends Controller
             $data['password'] = bcrypt($updatedPassword);
         }
 
+        $imageName = 'image_' . $userId . '.jpg';
+        if ($request->file('image') !== null) {
+            $request->file('image')->move('img/', $imageName);
+            $data['avatar'] = $imageName;
+        }
+
         DB::table('users')->where('id', $userId)->update($data);
 
         return $this->main($request);
