@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('addEventForm', 'EventsController@addEventForm');
 
-Route::get('upcomingEvents', 'EventsController@mainList')->name('events');
+Route::get('upcomingEvents', 'EventsController@mainList')->name('upcomingEvents');
 
 Route::post('addEvent', 'EventsController@addEvent')->name('addEvent');
 Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');

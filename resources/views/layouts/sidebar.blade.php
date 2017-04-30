@@ -16,7 +16,7 @@ in care am apelat metoda composer() a variabilei $view corespunzatoare acestei p
     <p class="lead">Categorii disponibile:</p>
     <div class="list-group">
         @foreach($categories as $category)
-            <a href="{{ route('events', ['id' => $category->id]) }}" class="list-group-item">{{$category->category}}</a>
+            <a href="{{ route('upcomingEvents', ['id' => $category->id]) }}" class="list-group-item">{{$category->category}}</a>
         @endforeach
     </div>
 </div>

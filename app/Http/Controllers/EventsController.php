@@ -12,7 +12,7 @@ class EventsController extends Controller
 {
     public function mainList(Request $request)
     {
-        if($request->has('id')) {
+        if ($request->has('id')) {
             $events = Event::where('category', $request->query('id'))->get();
         } else {
             $events = Event::all();
