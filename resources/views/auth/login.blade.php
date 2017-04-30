@@ -15,7 +15,7 @@
                             <label for="email" class="col-md-4 control-label">User / E-Mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="login" value="{{ old('login') }}" required autofocus>
+                                <input id="identifier" type="text" class="form-control" name="identifier" value="{{ old('login') }}" required autofocus>
 
                                 @if ($errors->has('login'))
                                     <span class="help-block">
@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="submit" class="btn btn-primary">
                                     Login
                                 </button>
 

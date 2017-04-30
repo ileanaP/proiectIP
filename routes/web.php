@@ -11,8 +11,6 @@
 |
 */
 
-use App\Http\Middleware\LogoutRedirect;
-
 Route::get('/', 'HomeController@index');
 
 Route::get('addEventForm', 'EventsController@addEventForm');
