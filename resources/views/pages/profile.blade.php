@@ -4,7 +4,7 @@
         <div class="card hovercard">
             <div class="card-background">
                 {{ Html::image('img/'.$user[0]->avatar, '', array('class' => 'card-bkimg')) }}
-                <!-- http://lorempixel.com/850/280/people/9/ -->
+
             </div>
             <div class="useravatar">
                 {{ Html::image('img/'.$user[0]->avatar, '', array('class' => '')) }}
@@ -30,11 +30,6 @@
                     <div class="hidden-xs">Setari</div>
                 </button>
             </div>
-            <!--<div class="btn-group" role="group">
-                <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    <div class="hidden-xs">Following</div>
-                </button>
-            </div>-->
         </div>
 
         <div class="well">
@@ -43,8 +38,8 @@
                     <h3>This is tab 1</h3>
                 </div>
                 <div class="tab-pane fade in" id="tab2">
-
-                    <form class="form-horizontal">
+                    <form role="form" action="{{ route('submitChanges') }}" method="POST" class="form-horizontal">
+                        {{ csrf_field() }}
                         <fieldset>
 
                             <!-- Form Name -->
@@ -52,55 +47,55 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Email</label>
+                                <label class="col-md-4 control-label" for="email">Email</label>
                                 <div class="col-md-5">
-                                    <input id="textinput" name="textinput" type="text" placeholder="{{$user[0]->email}}" class="form-control input-md">
+                                    <input id="email" name="email" type="text" value="{{$user[0]->email}}" class="form-control input-md">
                                     <span class="help-block">Schimbati-va email-ul</span>
                                 </div>
                             </div>
 
                             <!-- Password input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="parolanoua">Parola noua</label>
+                                <label class="col-md-4 control-label" for="password">Parola noua</label>
                                 <div class="col-md-4">
-                                    <input id="parolanoua" name="parolanoua" type="password" placeholder="******" class="form-control input-md">
+                                    <input id="password" name="password" type="password" class="form-control input-md">
                                     <span class="help-block">Schimbati-va parola</span>
                                 </div>
                             </div>
 
                             <!-- Password input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="parolanouarepeat">Repetati parola noua</label>
+                                <label class="col-md-4 control-label" for="confirmedPassword">Repetati parola noua</label>
                                 <div class="col-md-5">
-                                    <input id="parolanouarepeat" name="parolanouarepeat" type="password" placeholder="******" class="form-control input-md">
+                                    <input id="confirmedPassword" name="confirmedPassword" type="password" class="form-control input-md">
                                     <span class="help-block">Repetati parola noua</span>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="prenume">Prenume</label>
+                                <label class="col-md-4 control-label" for="name">Nume</label>
                                 <div class="col-md-5">
-                                    <input id="prenume" name="prenume" type="text" placeholder="{{$user[0]->name}}" class="form-control input-md">
-                                    <span class="help-block">Schimbati-va prenumele</span>
+                                    <input id="name" name="name" type="text" value="{{$user[0]->name}}" class="form-control input-md">
+                                    <span class="help-block">Schimbati-va numele</span>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="nume">Nume</label>
+                                <label class="col-md-4 control-label" for="surname">Prenume</label>
                                 <div class="col-md-5">
-                                    <input id="nume" name="nume" type="text" placeholder="{{$user[0]->surname}}" class="form-control input-md">
-                                    <span class="help-block">Schimbati-va numele</span>
+                                    <input id="surname" name="surname" type="text" value="{{$user[0]->surname}}" class="form-control input-md">
+                                    <span class="help-block">Schimbati-va prenumele</span>
                                 </div>
                             </div>
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="locatie">Locatie</label>
+                                <label class="col-md-4 control-label" for="location">Locatie</label>
                                 <div class="col-md-5">
-                                    <select id="locatie" name="locatie" class="form-control">
-                                        <option value="" selected disabled>{{$location[0]->location}}</option>
+                                    <select id="location" name="location" class="form-control">
+                                        <option value="" selected>{{$location[0]->location}}</option>
                                         @foreach($locations as $loc)
                                             <option value="{{$loc->id}}">{{$loc->location}}</option>
                                         @endforeach
@@ -120,7 +115,9 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="button1id"></label>
                                 <div class="col-md-8">
-                                    <button id="button1id" name="button1id" class="btn btn-success">Salvati</button>
+                                    <button type="submit" class="btn btn-success">
+                                        Salvati
+                                    </button>
                                     <button id="button2id" name="button2id" class="btn btn-danger">Anulati</button>
                                 </div>
                             </div>
@@ -129,9 +126,6 @@
                     </form>
 
 
-                </div>
-                <div class="tab-pane fade in" id="tab3">
-                    <h3>This is tab 3</h3>
                 </div>
             </div>
         </div>

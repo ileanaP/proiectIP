@@ -87,7 +87,6 @@ class EventsController extends Controller
 
         DB::table('events')->insert($data);
 
-        $request = new Request();
         return $this->addEventForm($request);
     }
 

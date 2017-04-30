@@ -21,6 +21,7 @@ Route::post('addEvent', 'EventsController@addEvent')->name('addEvent');
 Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');
 Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
 Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttendEvent');
+Route::post('submitChanges', 'UserProfileController@submitChanges')->name('submitChanges');
 
 Route::get('profile', 'UserProfileController@main')->name('profile');
 
