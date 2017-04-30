@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $organizersInfo = DB::table('org')->get();
+        $organizersInfo = DB::table('orgs')->get();
 
         $orgIds = [];
         foreach ($organizersInfo as $organizerInfo) {

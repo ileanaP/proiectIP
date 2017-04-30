@@ -35,7 +35,7 @@ class EventsController extends Controller
         $event = DB::table('events')->where('id',$id)->get();
         $pics = DB::table('pictures')->where('event_id',$id)->get();
         $n = count($pics); // the number of pictures for a particular event
-        $org = DB::table('org')->where('id',$event[0]->org_id)->get();
+        $org = DB::table('orgs')->where('id',$event[0]->org_id)->get();
 
         $attendees_id = Attend::where('event_id',$id)->get();
         $usrid = [];
@@ -45,6 +45,7 @@ class EventsController extends Controller
         $attendees = User::find($usrid);
 
         $orgIds = $this->getOrgIds();
+        $adminIds = $this->getAdminIds();
         return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'orgIds', 'usrid', 'attendees'));
     }
 
@@ -74,7 +75,7 @@ class EventsController extends Controller
 
         $userId = $request->user()->id;
 
-        $organizerInfo = DB::table('org')->where('user_id', $userId)->get();
+        $organizerInfo = DB::table('orgs')->where('user_id', $userId)->get();
 
         $data = [
             'address' => $address,
@@ -94,7 +95,7 @@ class EventsController extends Controller
 
     private function getOrgIds()
     {
-        $organizersInfo = DB::table('org')->get();
+        $organizersInfo = DB::table('orgs')->get();
 
         $orgIds = [];
         foreach ($organizersInfo as $organizerInfo) {
@@ -103,6 +104,20 @@ class EventsController extends Controller
 
         return $orgIds;
     }
+
+    private function getAdminIds()
+    {
+        $adminType = DB::table('types')->where('types', 'Administrator')->get();
+        $adminsInfo = DB::table('users')->where('type', $adminType)->get();
+
+        $adminIds = [];
+        foreach ($adminsInfo as $adminInfo) {
+            $adminIds[] = $adminInfo->user_id;
+        }
+
+        return $adminIds;
+    }
+
 
 
 }

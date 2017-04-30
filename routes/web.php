@@ -25,6 +25,11 @@ Route::post('submitChanges', 'UserProfileController@submitChanges')->name('submi
 
 Route::get('profile', 'UserProfileController@main')->name('profile');
 
+
+Route::get('organizersPage', 'OrganizerController@seeOrganizers')->name('updateOrganizers');
+Route::post('addOrganizer', 'OrganizerController@addOrganizer')->name('addOrganizer');
+
+
 Auth::routes();
 
 Route::get('logout', [

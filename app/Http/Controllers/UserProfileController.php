@@ -63,10 +63,9 @@ class UserProfileController extends Controller
         return $this->main($request);
     }
 
-
     private function getOrgIds()
     {
-        $organizersInfo = DB::table('org')->get();
+        $organizersInfo = DB::table('orgs')->get();
 
         $orgIds = [];
         foreach ($organizersInfo as $organizerInfo) {

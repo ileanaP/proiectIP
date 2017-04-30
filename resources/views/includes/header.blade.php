@@ -19,6 +19,7 @@
                         <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
                     @endif
                 @endif
+                <li><a id="organizersPage" href="/organizersPage">Actualizare organizatori</a></li>
                 <li><a id="profile" href="/profile">Profil</a></li>
 
             </ul>

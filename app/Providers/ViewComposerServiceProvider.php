@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Org;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -34,6 +36,15 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         view()->composer('layouts.categoryList', function($view){
             $view->with('categories', Category::all());
+        });
+
+
+        view()->composer('pages.organizers', function($view){
+            $view->with('org', Org::all());
+        });
+
+        view()->composer('layouts.userList', function($view){
+            $view->with('users', User::all());
         });
     }
 }
