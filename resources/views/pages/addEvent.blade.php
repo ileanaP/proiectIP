@@ -47,7 +47,8 @@
 
                                 <input type="file" name="image" id="image">
 
-                                <button type="submit" class="btn btn-primary">
+                                </div>
+                                <button type="submit" class="submit">
                                     Submit
                                 </button>
 
