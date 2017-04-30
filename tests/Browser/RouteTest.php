@@ -14,27 +14,21 @@ class RouteTest extends DuskTestCase
      * User try to access home page (/ or /home)
      *
      * Expectation
-     * He is redirected to login form
+     * He is still redirected to homepage
      */
     public function testHomeRouteWhenNotLoggedIn()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-
-                    ->assertSee('User / E-Mail')
-                    ->assertSee('Forgot Your Password?')
-                    ->assertDontSee('Subscribe to our site')
-                    ->assertPathIs('/proiectIP/public/login');
+                ->assertSee('What We Do')
+                ->assertPathIs('/proiectIP/public/');
         });
 
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/home')
-
-                ->assertSee('User / E-Mail')
-                ->assertSee('Forgot Your Password?')
-                ->assertDontSee('Subscribe to our site')
-                ->assertPathIs('/proiectIP/public/login');
+                ->assertSee('What We Do')
+                ->assertPathIs('/proiectIP/public/home');
         });
     }
 
@@ -50,7 +44,7 @@ class RouteTest extends DuskTestCase
     public function testLoginSuccess()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->visit('/login')
 
                 ->type('identifier', 'diana2@email.com')
                 ->type('password', '111111')
@@ -59,14 +53,7 @@ class RouteTest extends DuskTestCase
                 ->assertPathIs('/proiectIP/public/');
         });
 
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/logout')
-
-                ->assertSee('User / E-Mail')
-                ->assertSee('Forgot Your Password?')
-                ->assertDontSee('Subscribe to our site')
-                ->assertPathIs('/proiectIP/public/login');
-        });
+        $this->testLogoutRoute();
     }
 
     /**
@@ -79,7 +66,7 @@ class RouteTest extends DuskTestCase
     public function testLoginFail()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->visit('/login')
 
                 ->type('identifier', 'diana2@email.com')
                 ->type('password', '')
@@ -166,7 +153,7 @@ class RouteTest extends DuskTestCase
     public function testUpcomingEventsRoute()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->visit('/login')
 
                 ->type('identifier', 'diana2@email.com')
                 ->type('password', '111111')
@@ -193,7 +180,7 @@ class RouteTest extends DuskTestCase
     public function testAddEventPageRoute()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
+            $browser->visit('/login')
 
                 ->type('identifier', 'diana2@email.com')
                 ->type('password', '111111')
@@ -227,9 +214,8 @@ class RouteTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/logout')
-                ->assertSee('User / E-Mail')
-                ->assertSee('Forgot Your Password?')
-                ->assertDontSee('Subscribe to our site');
+                ->assertSee('What We Do')
+                ->assertPathIs('/proiectIP/public/');
         });
 
     }
