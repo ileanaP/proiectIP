@@ -26,8 +26,9 @@ Route::post('submitChanges', 'UserProfileController@submitChanges')->name('submi
 Route::get('profile', 'UserProfileController@main')->name('profile');
 
 
-Route::get('organizersPage', 'OrganizerController@seeOrganizers')->name('updateOrganizers');
+Route::get('organizersPage', 'OrganizerController@seeOrganizers')->name('seeOrganizers');
 Route::post('addOrganizer', 'OrganizerController@addOrganizer')->name('addOrganizer');
+Route::post('deleteOrganizers', 'OrganizerController@deleteOrganizers')->name('deleteOrganizers');
 
 
 Auth::routes();

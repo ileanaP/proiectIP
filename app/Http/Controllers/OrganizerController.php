@@ -21,6 +21,21 @@ class OrganizerController extends Controller
         return view('pages.organizers', compact('users'));
     }
 
+    public function deleteOrganizers(Request $request)
+    {
+        $request->offsetUnset('_token');
+        $orgIds = $request->all();
+
+        foreach ($orgIds as $orgId) {
+            $organizerInfo = Org::where('id', $orgId)->get();
+
+            DB::table('users')->where('id', $organizerInfo[0]->user_id)->update(['type' => 4]);
+            DB::table('orgs')->where('id', $orgId)->delete();
+        }
+
+        return $this->seeOrganizers();
+    }
+
     public function addOrganizer(Request $request)
     {
         $userId = $request->get('userId');
