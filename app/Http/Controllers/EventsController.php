@@ -68,7 +68,9 @@ class EventsController extends Controller
         $categoryId = $request->get('categoryId');
         $imageName = 'image_' . $titleEvent . '.jpg';
 
-        $request->file('image')->move('img/', $imageName);
+        if ($request->file('image') !== null) {
+            $request->file('image')->move('img/', $imageName);
+        }
 
         $userId = $request->user()->id;
 
