@@ -53,4 +53,25 @@ class RouteTest extends DuskTestCase
     }
 
 
+    public function testLogoutRoute()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/logout')
+                ->assertSee('User / E-Mail')
+                ->assertSee('Forgot Your Password?')
+                ->assertDontSee('Subscribe to our site');
+        });
+
+    }
+
+    public function testAddEventPageRoute()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/addEventForm')
+                ->assertSelectHasOptions('categoryId', [1,2,3,4])
+                ->assertSee('Adauga un nou eveniment din urmatoarele categorii disponibile:');
+        });
+
+    }
+
 }
