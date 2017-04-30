@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" style="border:0px">
                 <!--<div class="panel-heading">Subscribe to our site</div>-->
-                <h3>Creaza-ti un cont:</h3>
+                <h3>Inregistreaza-te:</h3>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -94,7 +94,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="submit" class="btn btn-primary">
-                                    Register
+                                    Inregistreaza-te
                                 </button>
                             </div>
                         </div>

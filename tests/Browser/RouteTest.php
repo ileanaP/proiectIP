@@ -73,7 +73,6 @@ class RouteTest extends DuskTestCase
                 ->press('.submit')
 
                 ->assertSee('User / E-Mail')
-                ->assertSee('Forgot Your Password?')
                 ->assertDontSee('What We Do')
                 ->assertPathIs('/proiectIP/public/login');
         });
@@ -94,15 +93,18 @@ class RouteTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
-
-                ->assertSee('Subscribe to our site')
-                ->assertSee('Password')
-                ->assertSee('E-Mail Address')
-                ->assertSee('Name')
-                ->assertSee('Register')
+                ->assertSee('Inregistreaza-te:')
+                ->assertSee('Parola')
+                ->assertSee('Adresa de email')
+                ->assertSee('Nume')
+                ->assertSee('Prenume')
+                ->assertSee('User')
+                ->assertSee('Inregistreaza-te')
 
                 ->type('user', 'test user' . rand(200,300))
-                ->type('email', 'test@email.com' . rand(200,300))
+                ->type('email', 'test' . rand(200,300) . '@email.com' . rand(200,300))
+                ->type('name', 'test name')
+                ->type('surname', 'test surname')
                 ->type('password', '111111')
                 ->type('password_confirmation', '111111')
                 ->press('.submit')
@@ -125,13 +127,17 @@ class RouteTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
-                ->assertSee('Subscribe to our site')
-                ->assertSee('Password')
-                ->assertSee('E-Mail Address')
-                ->assertSee('Name')
-                ->assertSee('Register')
+                ->assertSee('Inregistreaza-te:')
+                ->assertSee('Parola')
+                ->assertSee('Adresa de email')
+                ->assertSee('Nume')
+                ->assertSee('Prenume')
+                ->assertSee('User')
+                ->assertSee('Inregistreaza-te')
 
                 ->type('user', 'test user' . rand(10,100))
+                ->type('name', 'test name')
+                ->type('surname', 'test surname')
                 ->type('email', 'test@email.com' . rand(10,100))
                 ->type('password', '111111')
                 ->type('password_confirmation', '111121')

@@ -12,7 +12,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li id="home"><a href="/">Home</a></li>
+                <li id="home"><a href="/">Acasa</a></li>
                 <li><a id="upcomingEvents" href="/upcomingEvents">Evenimente</a></li>
                 @if (Auth::check())
                     @if (in_array(Auth::user()->id, $orgIds))
@@ -26,7 +26,7 @@
 
                 <li><a id="register" href="/register">Inregistrare</a></li>
                 <li><a id="login" href="/login">Autentificare</a></li>
-                <li><a href="logout">Logout</a></li>
+                <li><a href="logout">Iesire din cont</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
