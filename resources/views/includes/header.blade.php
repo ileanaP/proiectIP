@@ -15,9 +15,12 @@
                 <li id="home"><a href="/">Acasa</a></li>
                 <li><a id="upcomingEvents" href="/upcomingEvents">Evenimente</a></li>
                 @if (Auth::check())
-                    @if (in_array(Auth::user()->id, $orgIds))
-                        <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
-                    @endif
+                    @foreach($org as $organizer)
+                        @if (Auth::user()->id == $organizer->user_id)
+                            <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
+                        @endif
+                    @endforeach
+
                 @endif
                 <li><a id="organizersPage" href="/organizersPage">Actualizare organizatori</a></li>
                 <li><a id="profile" href="/profile">Profil</a></li>

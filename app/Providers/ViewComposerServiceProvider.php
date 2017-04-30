@@ -29,7 +29,8 @@ class ViewComposerServiceProvider extends ServiceProvider
         //
     }
 
-    private function composeSidebar(){
+    private function composeSidebar()
+    {
         view()->composer('layouts.sidebar', function($view){
             $view->with('categories', Category::all());
         });
@@ -38,13 +39,12 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('categories', Category::all());
         });
 
-
         view()->composer('pages.organizers', function($view){
             $view->with('org', Org::all());
         });
 
-        view()->composer('layouts.userList', function($view){
-            $view->with('users', User::all());
+        view()->composer('includes.header', function($view){
+            $view->with('org', Org::all());
         });
     }
 }

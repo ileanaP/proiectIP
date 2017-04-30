@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Org;
 use Illuminate\Http\Request;
 use App\User;
 use App\Location;
@@ -15,8 +16,9 @@ class OrganizerController extends Controller
 
     public function seeOrganizers()
     {
-        $orgIds = $this->getOrgIds();
-        return view('pages.organizers', compact('orgIds'));
+        $users = User::where('type', 4)->get();
+
+        return view('pages.organizers', compact('users'));
     }
 
     public function addOrganizer(Request $request)
@@ -31,19 +33,9 @@ class OrganizerController extends Controller
         ];
 
         DB::table('orgs')->insert($data);
+        DB::table('users')->where('id', $userId)->update(['type' => 3]);
         return $this->seeOrganizers();
     }
 
-    private function getOrgIds()
-    {
-        $organizersInfo = DB::table('orgs')->get();
-
-        $orgIds = [];
-        foreach ($organizersInfo as $organizerInfo) {
-            $orgIds[] = $organizerInfo->user_id;
-        }
-
-        return $orgIds;
-    }
 
 }

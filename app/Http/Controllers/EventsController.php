@@ -18,8 +18,7 @@ class EventsController extends Controller
             $events = Event::all();
         }
 
-        $orgIds = $this->getOrgIds();
-        return view('pages.events', compact('events', 'orgIds'));
+        return view('pages.events', compact('events'));
     }
 
     public function searchEventByCategory(Request $request)
@@ -44,15 +43,12 @@ class EventsController extends Controller
         }
         $attendees = User::find($usrid);
 
-        $orgIds = $this->getOrgIds();
-        $adminIds = $this->getAdminIds();
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'orgIds', 'usrid', 'attendees'));
+        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
     }
 
     public function addEventForm(Request $request)
     {
-        $orgIds = $this->getOrgIds();
-        return view('pages.addEvent', compact('orgIds'));
+        return view('pages.addEvent');
     }
 
     /**
@@ -91,18 +87,6 @@ class EventsController extends Controller
         DB::table('events')->insert($data);
 
         return $this->addEventForm($request);
-    }
-
-    private function getOrgIds()
-    {
-        $organizersInfo = DB::table('orgs')->get();
-
-        $orgIds = [];
-        foreach ($organizersInfo as $organizerInfo) {
-            $orgIds[] = $organizerInfo->user_id;
-        }
-
-        return $orgIds;
     }
 
     private function getAdminIds()

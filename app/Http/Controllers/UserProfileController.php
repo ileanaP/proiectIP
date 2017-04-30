@@ -21,9 +21,7 @@ class UserProfileController extends Controller
         $location = Location::where('id', $user[0]->location)->get();
         $locations = Location::where('id', '>', 0)->get();
 
-        $orgIds = $this->getOrgIds();
-
-        return view('pages.profile', compact('user','location', 'locations', 'orgIds'));
+        return view('pages.profile', compact('user','location', 'locations'));
     }
 
     public function submitChanges(Request $request)
@@ -61,18 +59,6 @@ class UserProfileController extends Controller
         DB::table('users')->where('id', $userId)->update($data);
 
         return $this->main($request);
-    }
-
-    private function getOrgIds()
-    {
-        $organizersInfo = DB::table('orgs')->get();
-
-        $orgIds = [];
-        foreach ($organizersInfo as $organizerInfo) {
-            $orgIds[] = $organizerInfo->user_id;
-        }
-
-        return $orgIds;
     }
 
 }
