@@ -15,15 +15,9 @@ use App\Http\Middleware\LogoutRedirect;
 
 Route::get('/', 'HomeController@index');
 
-Route::get('upcomingEvents', function()
-{
-    return view('pages.upcomingEvents');
-});
-
-
 Route::get('addEventForm', 'EventsController@addEventForm');
 
-Route::get('events', 'EventsController@mainList')->name('events');
+Route::get('upcomingEvents', 'EventsController@mainList')->name('events');
 
 Route::post('addEvent', 'EventsController@addEvent')->name('addEvent');
 Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');

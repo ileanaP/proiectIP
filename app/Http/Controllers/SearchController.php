@@ -8,7 +8,8 @@ use App\Event;
 
 class SearchController extends Controller
 {
-    public function searchByCategory(Request $request){
+    public function searchByCategory(Request $request)
+    {
         $events = Event::where('category',$request->query('id'));
         return view('pages.events', compact('events'));
     }

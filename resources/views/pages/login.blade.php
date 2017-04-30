@@ -43,8 +43,4 @@
 <script src="../resources/assetsLogin/js/jquery.backstretch.min.js"></script>
 <script src="../resources/assetsLogin/js/scripts.js"></script>
 
-<!--[if lt IE 10]>
-<script src="../resources/assetsLogin/js/placeholder.js"></script>
-<![endif]-->
-
 @stop
