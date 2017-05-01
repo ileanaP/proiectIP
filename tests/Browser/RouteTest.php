@@ -20,14 +20,14 @@ class RouteTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                ->assertSee('What We Do')
+                ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!')
                 ->assertPathIs('/proiectIP/public/');
         });
 
 
         $this->browse(function (Browser $browser) {
             $browser->visit('/home')
-                ->assertSee('What We Do')
+                ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!')
                 ->assertPathIs('/proiectIP/public/home');
         });
     }
@@ -49,7 +49,7 @@ class RouteTest extends DuskTestCase
                 ->type('identifier', 'diana2@email.com')
                 ->type('password', '111111')
                 ->press('.submit')
-                ->assertSee('What We Do')
+                ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!')
                 ->assertPathIs('/proiectIP/public/');
         });
 
@@ -73,7 +73,7 @@ class RouteTest extends DuskTestCase
                 ->press('.submit')
 
                 ->assertSee('User / E-Mail')
-                ->assertDontSee('What We Do')
+                ->assertDontSee('Bine ati venit la "Fundatia Gabriela Tudor"!')
                 ->assertPathIs('/proiectIP/public/login');
         });
 
@@ -110,7 +110,7 @@ class RouteTest extends DuskTestCase
                 ->press('.submit')
 
                 ->assertPathIs("/proiectIP/public/home")
-                ->assertSee('What We Do');
+                ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!');
         });
 
         $this->testLogoutRoute();
@@ -220,7 +220,7 @@ class RouteTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/logout')
-                ->assertSee('What We Do')
+                ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!')
                 ->assertPathIs('/proiectIP/public/');
         });
 

@@ -12,12 +12,14 @@
 {{ Html::script('js/bootstrap.js') }}
 {{ Html::script('js/npm.js') }}
 {{ Html::script('js/script.js') }}
+{{ Html::script('assetsLogin/bootstrap/css/bootstrap.min.css') }}
+{{ Html::script('assetsLogin/font-awesome/css/font-awesome.min.css') }}
+{{ Html::script('assetsLogin/bootstrap/css/style.css') }}
+{{ Html::script('assetsLogin/css/form-elements.css') }}
 
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-<link rel="stylesheet" href="../resources/assetsLogin/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../resources/assetsLogin/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="../resources/assetsLogin/css/form-elements.css">
-<link rel="stylesheet" href="../resources/assetsLogin/css/style.css">
 
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-
+{{ Html::script('assetsLogin/js/jquery-1.11.1.min.js') }}
+{{ Html::script('assetsLogin/bootstrap/js/bootstrap.min.js') }}
+{{ Html::script('assetsLogin/js/jquery.backstretch.min.js') }}
+{{ Html::script('assetsLogin/js/scripts.js') }}
+{{ Html::script('assetsLogin/js/placeholder.js') }}

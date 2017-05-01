@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('user') ? ' has-error' : '' }}">
-                            <label for="user" class="col-md-4 control-label">User</label>
+                            <label for="user" class="col-md-4 control-label">Username</label>
 
                             <div class="col-md-6">
                                 <input id="user" type="text" class="form-control" name="user" value="{{ old('user') }}" required autofocus>
@@ -104,15 +104,5 @@
         </div>
     </div>
 </div>
-
-<!-- Javascript -->
-<script src="../resources/assetsLogin/js/jquery-1.11.1.min.js"></script>
-<script src="../resources/assetsLogin/bootstrap/js/bootstrap.min.js"></script>
-<script src="../resources/assetsLogin/js/jquery.backstretch.min.js"></script>
-<script src="../resources/assetsLogin/js/scripts.js"></script>
-
-<!--[if lt IE 10]>
-<script src="../resources/assetsLogin/js/placeholder.js"></script>
-<![endif]-->
 
 @endsection

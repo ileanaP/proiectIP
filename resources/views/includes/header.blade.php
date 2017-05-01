@@ -28,18 +28,19 @@
                     @endif
                 @endif
 
-                <li><a id="profile" href="/profile">Profil</a></li>
+                <li><a id="profile" href="/profile">Profilul tau</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
-                <li><a id="register" href="/register">Inregistrare</a></li>
                 @if (!Auth::check())
-                <li><a id="login" href="/login">Autentificare</a></li>
+                    <li><a id="register" href="/register">Inregistrare</a></li>
+                    <li><a id="login" href="/login">Autentificare</a></li>
                 @endif
+
                 @if (Auth::check())
                 <li><a href="logout">Iesire din cont</a></li>
                 @endif
+
             </ul>
         </div>
     </div>
