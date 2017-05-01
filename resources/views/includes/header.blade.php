@@ -20,9 +20,14 @@
                             <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
                         @endif
                     @endforeach
-
                 @endif
-                <li><a id="organizersPage" href="/organizersPage">Administrare organizatori</a></li>
+
+                @if (Auth::check())
+                    @if (in_array(Auth::user()->id, $adminIds))
+                        <li><a id="organizersPage" href="/organizersPage">Administrare organizatori</a></li>
+                    @endif
+                @endif
+
                 <li><a id="profile" href="/profile">Profil</a></li>
 
             </ul>

@@ -18,14 +18,17 @@ class EventsController extends Controller
             $events = Event::all();
         }
 
-        return view('pages.events', compact('events'));
+        $adminIds = $this->getAdminIds();
+        return view('pages.events', compact('events', 'adminIds'));
     }
 
     public function searchEventByCategory(Request $request)
     {
         $id = $request->query('id');
         $events = Event::where('category',$id);
-        return view('pages.events', compact('events'));
+
+        $adminIds = $this->getAdminIds();
+        return view('pages.events', compact('events', 'adminIds'));
     }
 
     public function eventPage(Request $request)
@@ -43,12 +46,15 @@ class EventsController extends Controller
         }
         $attendees = User::find($usrid);
 
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees'));
+        $adminIds = $this->getAdminIds();
+
+        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees', 'adminIds'));
     }
 
     public function addEventForm(Request $request)
     {
-        return view('pages.addEvent');
+        $adminIds = $this->getAdminIds();
+        return view('pages.addEvent', compact('adminIds'));
     }
 
     /**
@@ -92,7 +98,7 @@ class EventsController extends Controller
     private function getAdminIds()
     {
         $adminType = DB::table('types')->where('types', 'Administrator')->get();
-        $adminsInfo = DB::table('users')->where('type', $adminType)->get();
+        $adminsInfo = DB::table('users')->where('type', $adminType[0]->id)->get();
 
         $adminIds = [];
         foreach ($adminsInfo as $adminInfo) {

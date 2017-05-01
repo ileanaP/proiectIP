@@ -21,7 +21,8 @@ class UserProfileController extends Controller
         $location = Location::where('id', $user[0]->location)->get();
         $locations = Location::where('id', '>', 0)->get();
 
-        return view('pages.profile', compact('user','location', 'locations'));
+        $adminIds = $this->getAdminIds();
+        return view('pages.profile', compact('user','location', 'locations', 'adminIds'));
     }
 
     public function submitChanges(Request $request)
@@ -59,6 +60,19 @@ class UserProfileController extends Controller
         DB::table('users')->where('id', $userId)->update($data);
 
         return $this->main($request);
+    }
+
+    private function getAdminIds()
+    {
+        $adminType = DB::table('types')->where('types', 'Administrator')->get();
+        $adminsInfo = DB::table('users')->where('type', $adminType[0]->id)->get();
+
+        $adminIds = [];
+        foreach ($adminsInfo as $adminInfo) {
+            $adminIds[] = $adminInfo->user_id;
+        }
+
+        return $adminIds;
     }
 
 }

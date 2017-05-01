@@ -18,7 +18,8 @@ class OrganizerController extends Controller
     {
         $users = User::where('type', 4)->get();
 
-        return view('pages.organizers', compact('users'));
+        $adminIds = $this->getAdminIds();
+        return view('pages.organizers', compact('users', 'adminIds'));
     }
 
     public function deleteOrganizers(Request $request)
@@ -49,7 +50,21 @@ class OrganizerController extends Controller
 
         DB::table('orgs')->insert($data);
         DB::table('users')->where('id', $userId)->update(['type' => 3]);
+
         return $this->seeOrganizers();
+    }
+
+    private function getAdminIds()
+    {
+        $adminType = DB::table('types')->where('types', 'Administrator')->get();
+        $adminsInfo = DB::table('users')->where('type', $adminType[0]->id)->get();
+
+        $adminIds = [];
+        foreach ($adminsInfo as $adminInfo) {
+            $adminIds[] = $adminInfo->user_id;
+        }
+
+        return $adminIds;
     }
 
 

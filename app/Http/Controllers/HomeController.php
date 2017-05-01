@@ -19,6 +19,21 @@ class HomeController extends Controller
             $orgIds[] = $organizerInfo->user_id;
         }
 
-        return view('pages.home', compact('orgIds'));
+        $adminIds = $this->getAdminIds();
+
+        return view('pages.home', compact('orgIds', 'adminIds'));
+    }
+
+    private function getAdminIds()
+    {
+        $adminType = DB::table('types')->where('types', 'Administrator')->get();
+        $adminsInfo = DB::table('users')->where('type', $adminType[0]->id)->get();
+
+        $adminIds = [];
+        foreach ($adminsInfo as $adminInfo) {
+            $adminIds[] = $adminInfo->user_id;
+        }
+
+        return $adminIds;
     }
 }
