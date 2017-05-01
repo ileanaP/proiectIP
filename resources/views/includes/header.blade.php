@@ -32,6 +32,6 @@
                 <li><a id="login" href="/login">Autentificare</a></li>
                 <li><a href="logout">Iesire din cont</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
