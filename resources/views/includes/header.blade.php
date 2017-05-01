@@ -22,7 +22,7 @@
                     @endforeach
 
                 @endif
-                <li><a id="organizersPage" href="/organizersPage">Actualizare organizatori</a></li>
+                <li><a id="organizersPage" href="/organizersPage">Administrare organizatori</a></li>
                 <li><a id="profile" href="/profile">Profil</a></li>
 
             </ul>
