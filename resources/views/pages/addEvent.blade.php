@@ -21,26 +21,26 @@
 <br>
                                 <div>Titlu:</div>
                                 <div class="form-group">
-                                    <input type="text" name="title" id="title" class="form-username form-control">
+                                    <input type="text" name="title" id="title" class="form-control">
                                 </div>
 
                                 <div class="form-group">Descriere:
                                     <label class="sr-only" for="form-password">Descriere eveniment</label>
-                                    <textarea name="description" id="description" class="form-username form-control">
+                                    <textarea name="description" id="description" class="form-control">
                                     </textarea>
                                 </div>
 
                                 <div class="form-group">Adresa:
                                     <label class="sr-only" for="form-username">Adresa:</label>
-                                    <input type="text" name="address" id="address" class="form-username form-control">
+                                    <input type="text" name="address" id="address" class="form-control">
                                 </div>
 
                                 <div class="form-group">Pretul unui bilet la eveniment:
-                                    <input type="text" name="price" id="price" class="form-username form-control">
+                                    <input type="text" name="price" id="price" class="form-control">
                                 </div>
 
                                 <div class="form-group">Link catre pagina evenimentului:
-                                    <input type="text" name="link" id="link" class="form-username form-control">
+                                    <input type="text" name="link" id="link" class="form-control">
                                 </div>
 
                                 <div class="form-group">Adauga o imagine reprezentativa:
