@@ -29,8 +29,12 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li><a id="register" href="/register">Inregistrare</a></li>
+                @if (!Auth::check())
                 <li><a id="login" href="/login">Autentificare</a></li>
+                @endif
+                @if (Auth::check())
                 <li><a href="logout">Iesire din cont</a></li>
+                @endif
             </ul>
         </div>
     </div>
