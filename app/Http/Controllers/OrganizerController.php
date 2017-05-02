@@ -49,7 +49,8 @@ class OrganizerController extends Controller
         ];
 
         $isAlreadyOrganizer = DB::table('orgs')->where('user_id', $userId)->get();
-        if (!$isAlreadyOrganizer) {
+
+        if (!empty($isAlreadyOrganizer)) {
             DB::table('orgs')->insert($data);
             DB::table('users')->where('id', $userId)->update(['type' => 3]);
         }
