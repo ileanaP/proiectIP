@@ -4,7 +4,6 @@ namespace Tests\Browser;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class RouteTest extends DuskTestCase
 {
@@ -46,14 +45,14 @@ class RouteTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
 
-                ->type('identifier', 'diana2@email.com')
+                ->type('identifier', 'user1@yahoo.com')
                 ->type('password', '111111')
                 ->press('.submit')
                 ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!')
                 ->assertPathIs('/proiectIP/public/');
         });
 
-        $this->testLogoutRoute();
+        $this->goToLogout();
     }
 
     /**
@@ -68,7 +67,7 @@ class RouteTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
 
-                ->type('identifier', 'diana2@email.com')
+                ->type('identifier', 'user1@yahoo.com')
                 ->type('password', '')
                 ->press('.submit')
 
@@ -113,7 +112,7 @@ class RouteTest extends DuskTestCase
                 ->assertSee('Bine ati venit la "Fundatia Gabriela Tudor"!');
         });
 
-        $this->testLogoutRoute();
+        $this->goToLogout();
     }
 
     /**
@@ -147,7 +146,7 @@ class RouteTest extends DuskTestCase
                 ->assertPathIs('/proiectIP/public/register');
         });
 
-        $this->testLogoutRoute();
+        $this->goToLogout();
     }
 
     /**
@@ -161,7 +160,7 @@ class RouteTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
 
-                ->type('identifier', 'diana2@email.com')
+                ->type('identifier', 'user1@yahoo.com')
                 ->type('password', '111111')
                 ->press('.submit');
         });
@@ -174,7 +173,7 @@ class RouteTest extends DuskTestCase
                 ->assertPathIs('/proiectIP/public/upcomingEvents');
         });
 
-        $this->testLogoutRoute();
+        $this->goToLogout();
     }
 
     /**
@@ -188,7 +187,7 @@ class RouteTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
 
-                ->type('identifier', 'diana2@email.com')
+                ->type('identifier', 'user1@yahoo.com')
                 ->type('password', '111111')
                 ->press('.submit');
         });
@@ -216,7 +215,7 @@ class RouteTest extends DuskTestCase
      *
      * Expectation: he is redirected to homepage
      */
-    public function testLogoutRoute()
+    public function goToLogout()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/logout')
