@@ -61,7 +61,7 @@ class OrganizerController extends Controller
 
         $adminIds = [];
         foreach ($adminsInfo as $adminInfo) {
-            $adminIds[] = $adminInfo->user_id;
+            $adminIds[] = $adminInfo->id;
         }
 
         return $adminIds;
