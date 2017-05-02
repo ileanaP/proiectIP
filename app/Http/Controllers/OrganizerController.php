@@ -48,8 +48,11 @@ class OrganizerController extends Controller
             'user_id' => $userId,
         ];
 
-        DB::table('orgs')->insert($data);
-        DB::table('users')->where('id', $userId)->update(['type' => 3]);
+        $isAlreadyOrganizer = DB::table('orgs')->where('user_id', $userId)->get();
+        if (!$isAlreadyOrganizer) {
+            DB::table('orgs')->insert($data);
+            DB::table('users')->where('id', $userId)->update(['type' => 3]);
+        }
 
         return $this->seeOrganizers();
     }
