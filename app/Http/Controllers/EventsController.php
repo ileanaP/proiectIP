@@ -92,7 +92,7 @@ class EventsController extends Controller
 
         DB::table('events')->insert($data);
 
-        return $this->addEventForm($request);
+        return $this->mainList($request);
     }
 
     private function getAdminIds()
