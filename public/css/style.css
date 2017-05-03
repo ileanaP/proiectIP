@@ -93,19 +93,6 @@ body {
     -webkit-border-radius:0 !important;
 }
 
-
-
-/*@media screen and (min-width:768px){*/
-    /*.navbar-brand-centered {*/
-        /*position: absolute;*/
-        /*left: 50%;*/
-        /*display: block;*/
-        /*width: 160px;*/
-        /*text-align: center;*/
-        /*background-color: #eee;*/
-    /*}*/
-    /*.navbar>.container .navbar-brand-centered,*/
-    /*.navbar>.container-fluid .navbar-brand-centered {*/
-        /*margin-left: -80px;*/
-    /*}*/
-/*}*/
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
