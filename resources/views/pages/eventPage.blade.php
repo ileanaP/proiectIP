@@ -45,7 +45,7 @@
                     </h4>
                     <p><strong>Data: </strong> {{ $event[0]->data }}</p>
                     <p>{{ $event[0]->desc }}</p>
-                    <p>More info: <a target="_blank" href="{{ $event[0]->link }}">{{ $event[0]->link }}</a>.</p>
+                    <p>Mai multe informatii: <a target="_blank" href="{{ $event[0]->link }}">{{ $event[0]->link }}</a>.</p>
                 </div>
                 <div class="caption-full">
                     @if (Auth::check())
