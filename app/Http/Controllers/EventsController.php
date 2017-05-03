@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Event;
 use App\User;
 use App\Attend;
+use App\Org;
 
 class EventsController extends Controller
 {
@@ -63,34 +64,20 @@ class EventsController extends Controller
      */
     public function addEvent(Request $request)
     {
-        $titleEvent = $request->get('title');
-        $descriptionEvent = $request->get('description');
-        $link = $request->get('link');
-        $price = $request->get('price');
-        $address = $request->get('address');
-        $categoryId = $request->get('categoryId');
-        $imageName = 'image_' . $titleEvent . '.jpg';
-
+        $event = new Event;
+        $event->name = $request->get('title');
+        $event->org_id = Org::where('user_id', $request->user()->id)->get()[0]->id;
+        $event->desc = $request->get('description');
+        $event->link = $request->get('link');
+        $event->price = $request->get('price');
+        $event->address = $request->get('address');
+        $event->category = $request->get('categoryId');
+        $event->save();
         if ($request->file('image') !== null) {
+            $imageName = $event->id . '_event_title_image.jpg';
+            Event::where('id',$event->id)->update(['picture'=>$imageName]);
             $request->file('image')->move('img/', $imageName);
         }
-
-        $userId = $request->user()->id;
-
-        $organizerInfo = DB::table('orgs')->where('user_id', $userId)->get();
-
-        $data = [
-            'address' => $address,
-            'category' => $categoryId,
-            'desc' => $descriptionEvent,
-            'name' => $titleEvent,
-            'org_id' => $organizerInfo[0]->id,
-            'price' => $price,
-            'link' => $link,
-            'picture' => $imageName
-        ];
-
-        DB::table('events')->insert($data);
 
         return $this->mainList($request);
     }
