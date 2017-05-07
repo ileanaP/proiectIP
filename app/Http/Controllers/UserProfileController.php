@@ -8,15 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class UserProfileController extends Controller
 {
-    public function __construct()
-    {
-         $this->middleware('auth');
-    }
 
     public function main(Request $request)
     {
         if ($request->get('id') != null) {
             $userId = $request->get('id');
+        } elseif ($request->user() == null) {
+            return view('auth.login');
         } else {
             $userId = $request->user()->id;
         }
