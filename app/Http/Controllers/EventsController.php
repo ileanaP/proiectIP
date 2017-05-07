@@ -35,14 +35,14 @@ class EventsController extends Controller
     public function eventPage(Request $request)
     {
         $id = $request->query('id');
-        $event = DB::table('events')->where('id',$id)->get();
-        $pics = DB::table('pictures')->where('event_id',$id)->get();
+        $event = DB::table('events')->where('id', $id)->get();
+        $pics = DB::table('pictures')->where('event_id', $id)->get();
         $n = count($pics); // the number of pictures for a particular event
-        $org = DB::table('orgs')->where('id',$event[0]->org_id)->get();
+        $org = DB::table('orgs')->where('id', $event[0]->org_id)->get();
 
-        $attendees_id = Attend::where('event_id',$id)->get();
+        $attendees_id = Attend::where('event_id', $id)->get();
         $usrid = [];
-        foreach($attendees_id as $a){
+        foreach($attendees_id as $a) {
             $usrid[] = $a->user_id;
         }
         $attendees = User::find($usrid);

@@ -15,7 +15,11 @@ class UserProfileController extends Controller
 
     public function main(Request $request)
     {
-        $userId = $request->user()->id;
+        if ($request->get('id') != null) {
+            $userId = $request->get('id');
+        } else {
+            $userId = $request->user()->id;
+        }
 
         $user = User::where('id', $userId)->get();
         $location = Location::where('id', $user[0]->location)->get();
