@@ -37,7 +37,8 @@ class FeedbackController extends Controller
             'user_id' => $request->user()->id,
             'event_id' => $eventId,
             'comm' => $reason,
-            'stars' => $numberOfStars
+            'stars' => $numberOfStars,
+            'created_at' => date('Y-m-d h:i:s'),
         ];
 
         DB::table('feedback')->insert($data);

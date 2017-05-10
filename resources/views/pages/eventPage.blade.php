@@ -111,7 +111,10 @@
                     </div>
 
             </div>
+            <div>
+                @include('layouts.feedbackList')
 
+            </div>
 
         </div>
 

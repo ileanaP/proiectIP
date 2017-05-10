@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Category;
 use App\Org;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -30,20 +31,27 @@ class ViewComposerServiceProvider extends ServiceProvider
 
     private function composeSidebar()
     {
-        view()->composer('layouts.sidebar', function($view){
+        view()->composer('layouts.sidebar', function($view) {
             $view->with('categories', Category::all());
         });
 
-        view()->composer('layouts.categoryList', function($view){
+        view()->composer('layouts.categoryList', function($view) {
             $view->with('categories', Category::all());
         });
 
-        view()->composer('pages.organizers', function($view){
+        view()->composer('pages.organizers', function($view) {
             $view->with('org', Org::all());
         });
 
-        view()->composer('includes.header', function($view){
+        view()->composer('includes.header', function($view) {
             $view->with('org', Org::all());
+        });
+
+        view()->composer('layouts.feedbackList', function($view) {
+            $view->with('feedback', DB::table('feedback')
+                    ->join('users', 'users.id', '=', 'feedback.user_id')
+                    ->select('feedback.created_at', 'feedback.comm', 'users.user')
+                    ->get());
         });
     }
 }
