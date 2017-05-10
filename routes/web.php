@@ -23,11 +23,11 @@ Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttend
 
 Route::get('profile', 'UserProfileController@main')->name('profile');
 Route::get('organizersPage', 'OrganizerController@seeOrganizers')->name('seeOrganizers');
+Route::post('addFeedback', 'FeedbackController@addFeedback')->name('addFeedback');
 
 Route::post('addOrganizer', 'OrganizerController@addOrganizer')->name('addOrganizer');
 Route::post('deleteOrganizers', 'OrganizerController@deleteOrganizers')->name('deleteOrganizers');
 Route::post('submitChanges', 'UserProfileController@submitChanges')->name('submitChanges');
-
 
 Auth::routes();
 

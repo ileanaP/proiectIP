@@ -10,6 +10,7 @@
 {{ Html::style('css/style.css') }}
 {{ Html::script('js/jquery-1.11.1.min.js') }}
 {{ Html::script('simpleCart.min.js') }}
+{{ Html::style('css/stars.css') }}
 
 <!--banner-slider--><!-- ce face banner-slider-ul? :)) Ileana -->
 <div class="banner two">
@@ -19,6 +20,8 @@
 <div class="clearfix"></div>
 <!--albums-->
 <!-- pop-up-box -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
 <link href="../resources/assetsEvents/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 <script src="../resources/assetsEvents/js/jquery.magnific-popup.js" type="text/javascript"></script>
 <script>
