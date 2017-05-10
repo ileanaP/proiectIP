@@ -30,7 +30,7 @@ class FeedbackController extends Controller
         } elseif ($fiveStars != null) {
             $numberOfStars = 5;
         } else {
-            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'You have to fill at least one star!']);
+            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Trebuie sa umpli cel putin o steluta!']);
         }
 
         $data = [
@@ -42,7 +42,7 @@ class FeedbackController extends Controller
 
         DB::table('feedback')->insert($data);
 
-        return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Your message was saved! Thank you!']);
+        return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Mesajul tau a fost salvat! Multumim!']);
      }
 
 

@@ -48,7 +48,8 @@
                     <p>Mai multe informatii: <a target="_blank" href="{{ $event[0]->link }}">{{ $event[0]->link }}</a>.</p>
                 </div>
                 <div class="caption-full">
-                    @if (Auth::check())
+                    @if ($event[0]->data < date('Y-m-d h:i:s'))
+                    @elseif (Auth::check())
                         @if (!$attendees->isEmpty())
                             @if(in_array(Auth::user()->id,$usrid))
                                 <a class="btn btn-default pull-right" href="{{ route('notAttendEvent', ['id' => $id] ) }}">Nu mai particip</a>
@@ -76,7 +77,7 @@
                 </div>
 
                     <div>
-                    @if($event[0]->data < date('Y-m-d h:i:s'))
+                    @if ($event[0]->data < date('Y-m-d h:i:s'))
                         <h4> Evenimentul s-a incheiat!</h4>
                         @if (Auth::check())
                             @if(in_array(Auth::user()->id, $usrid))
