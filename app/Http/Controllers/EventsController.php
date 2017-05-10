@@ -47,9 +47,11 @@ class EventsController extends Controller
         }
         $attendees = User::find($usrid);
 
+        $feedbackMessage = $request->get('feedbackMessage') !== null ? $request->get('feedbackMessage') : '';
+
         $adminIds = $this->getAdminIds();
 
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees', 'adminIds'));
+        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
     }
 
     public function addEventForm(Request $request)

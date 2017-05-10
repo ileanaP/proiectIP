@@ -104,6 +104,9 @@
                             @endif
                         @endif
                     @endif
+                        @if ($feedbackMessage != '')
+                            <h4> {{ $feedbackMessage }} </h4>
+                        @endif
                     </div>
 
             </div>

@@ -9,13 +9,16 @@ class FeedbackController extends Controller
 {
     public function addFeedback(Request $request)
     {
+        $eventId = $request->get('eventId');
+
         $oneStar = $request->get('1');
         $twoStars = $request->get('2');
         $threeStars = $request->get('3');
         $fourStars = $request->get('4');
         $fiveStars = $request->get('5');
 
-        //todo - make stars mandatory
+        $reason = $request->get('feedbackReason');
+
         if ($oneStar !== null) {
             $numberOfStars = 1;
         } elseif ($twoStars !== null) {
@@ -24,22 +27,22 @@ class FeedbackController extends Controller
             $numberOfStars = 3;
         } elseif ($fourStars !== null) {
             $numberOfStars = 4;
-        } else {
+        } elseif ($fiveStars != null) {
             $numberOfStars = 5;
+        } else {
+            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'You have to fill at least one star!']);
         }
-
-        $reason = $request->get('feedbackReason');
 
         $data = [
             'user_id' => $request->user()->id,
-            'event_id' => $request->get('eventId'),
+            'event_id' => $eventId,
             'comm' => $reason,
             'stars' => $numberOfStars
         ];
 
         DB::table('feedback')->insert($data);
 
-        return view('pages.eventPage');
+        return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Your message was saved! Thank you!']);
      }
 
 
