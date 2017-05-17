@@ -39,7 +39,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('categories', Category::all());
         });
 
-        view()->composer('pages.organizers', function($view) {
+        view()->composer('pages.adminPageModifyOrgs', function($view) {
             $view->with('org', Org::all());
         });
 

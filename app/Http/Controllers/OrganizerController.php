@@ -19,7 +19,7 @@ class OrganizerController extends Controller
         $users = User::where('type', 4)->get();
 
         $adminIds = $this->getAdminIds();
-        return view('pages.organizers', compact('users', 'adminIds'));
+        return view('pages.adminPageModifyOrgs', compact('users', 'adminIds'));
     }
 
     public function deleteOrganizers(Request $request)
