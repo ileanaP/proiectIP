@@ -31,7 +31,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 
     private function composeSidebar()
     {
-        view()->composer('layouts.sidebar', function($view) {
+        view()->composer('includes.sidebar', function($view) {
             $view->with('categories', Category::all());
         });
 
