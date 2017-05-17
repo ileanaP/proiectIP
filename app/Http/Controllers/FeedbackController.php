@@ -19,6 +19,10 @@ class FeedbackController extends Controller
 
         $reason = $request->get('feedbackReason');
 
+        if ($reason == null) {
+            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Te rugam sa ne spui cateva cuvinte despre eveniment!']);
+        }
+
         if ($oneStar !== null) {
             $numberOfStars = 1;
         } elseif ($twoStars !== null) {
@@ -30,7 +34,7 @@ class FeedbackController extends Controller
         } elseif ($fiveStars != null) {
             $numberOfStars = 5;
         } else {
-            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Trebuie sa umpli cel putin o steluta!']);
+            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Te rugam sa umpli cel putin o steluta!']);
         }
 
         $data = [
