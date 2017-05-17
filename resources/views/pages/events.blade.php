@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="row">
-        @include('layouts.sidebar')
+        @include('includes.sidebar')
 
         <div class="col-md-9">
 

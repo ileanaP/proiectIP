@@ -43,7 +43,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Salveaza credentialele
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Salveaza parola si pastreaza-ma logat
                                     </label>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="submit">
+                                <button type="submit" class="submit" class="btn btn-primary">
                                     Submit
                                 </button>
 
