@@ -23,6 +23,8 @@ Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttend
 
 Route::get('profile', 'UserProfileController@main')->name('profile');
 Route::get('organizersPage', 'OrganizerController@seeOrganizers')->name('seeOrganizers');
+Route::get('organizerDetails', 'OrganizerController@getOrganizerDetails')->name('organizerDetails');
+
 Route::post('addFeedback', 'FeedbackController@addFeedback')->name('addFeedback');
 
 Route::post('addOrganizer', 'OrganizerController@addOrganizer')->name('addOrganizer');

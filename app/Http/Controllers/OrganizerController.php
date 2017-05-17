@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\Org;
 use Illuminate\Http\Request;
 use App\User;
-use App\Location;
 use Illuminate\Support\Facades\DB;
 
 class OrganizerController extends Controller
@@ -20,6 +20,16 @@ class OrganizerController extends Controller
 
         $adminIds = $this->getAdminIds();
         return view('pages.adminPageModifyOrgs', compact('users', 'adminIds'));
+    }
+
+    public function getOrganizerDetails(Request $request)
+    {
+        $idOrganizer = $request->get('id');
+        $events = Event::where("org_id", $idOrganizer)->get();
+
+        $adminIds = $this->getAdminIds();
+
+        return view('pages.organizerEventsPage', compact('events', 'adminIds'));
     }
 
     public function deleteOrganizers(Request $request)
