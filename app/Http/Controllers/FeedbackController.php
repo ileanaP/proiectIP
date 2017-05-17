@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +35,7 @@ class FeedbackController extends Controller
         } elseif ($fiveStars != null) {
             $numberOfStars = 5;
         } else {
-            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Te rugam sa umpli cel putin o steluta!']);
+            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Te rugam sa alegi un numar de stelute!']);
         }
 
         $data = [
@@ -44,6 +45,13 @@ class FeedbackController extends Controller
             'stars' => $numberOfStars,
             'created_at' => date('Y-m-d h:i:s'),
         ];
+
+        $alreadyGaveFeedback = Feedback::where(['event_id' => $eventId, 'user_id' => $request->user()->id])->count();
+
+        if ($alreadyGaveFeedback != 0) {
+            return redirect()->route('eventpage', ['id' => $eventId, 'feedbackMessage' => 'Deja ai dat feedback pentru acest eveniment! Multumim!']);
+
+        }
 
         DB::table('feedback')->insert($data);
 

@@ -50,7 +50,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer('layouts.feedbackList', function($view) {
             $view->with('feedback', DB::table('feedback')
                     ->join('users', 'users.id', '=', 'feedback.user_id')
-                    ->select('feedback.created_at', 'feedback.comm', 'users.user')
+                    ->select('feedback.created_at', 'feedback.comm', 'feedback.stars', 'users.user')
                     ->get());
         });
     }
