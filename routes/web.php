@@ -13,6 +13,10 @@
 
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
+Route::get('calendar', function()
+{
+    return view('pages.testcalendar');
+});
 
 Route::get('addEventForm', 'EventsController@addEventForm');
 Route::get('upcomingEvents', 'EventsController@mainList')->name('upcomingEvents');
@@ -30,6 +34,7 @@ Route::post('addFeedback', 'FeedbackController@addFeedback')->name('addFeedback'
 Route::post('addOrganizer', 'OrganizerController@addOrganizer')->name('addOrganizer');
 Route::post('deleteOrganizers', 'OrganizerController@deleteOrganizers')->name('deleteOrganizers');
 Route::post('submitChanges', 'UserProfileController@submitChanges')->name('submitChanges');
+
 
 Auth::routes();
 

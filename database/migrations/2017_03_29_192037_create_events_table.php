@@ -23,7 +23,8 @@ class CreateEventsTable extends Migration
             $table->text('desc');
             $table->string('picture');
             $table->string('link');
-            $table->timestamp('data');
+            $table->dateTime('startDate');
+            $table->dateTime('endDate');
             $table->integer('org_id')->unsigned();
             $table->timestamps();
         });
@@ -31,7 +32,7 @@ class CreateEventsTable extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::table('events', function (Blueprint $table) {
-            $table->foreign('org_id')->references('id')->on('org')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('org_id')->references('id')->on('orgs')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('location')->references('id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
         });
