@@ -42,7 +42,7 @@
             @foreach($events as $event)
                 <tr style="border-left: 1px solid #cdd0d4;border-right: 1px solid #cdd0d4;width:70%">
                     <td>{{ $event->name}}</td>
-                    <td> @if($event->average != -1)
+                    <td> @if ($event->average != -1)
                             {{ $event->average}}
                          @else
                             Nu exista feedback pentru acest eveniment!

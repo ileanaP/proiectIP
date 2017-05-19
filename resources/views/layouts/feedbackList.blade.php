@@ -1,4 +1,5 @@
 <div>
+    @if (count($feedback))
     <p class="lead">Mai multe opinii despre eveniment:</p>
     <div class="list-group">
         <table class="table" style="border-top: 1px solid #cdd0d4">
@@ -23,4 +24,7 @@
         @endforeach
         </table>
     </div>
+    @else
+    <p class="lead">Nu exista feedback pentru acest eveniment!</p>
+    @endif
 </div>
