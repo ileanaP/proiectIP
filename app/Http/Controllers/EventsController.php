@@ -93,6 +93,36 @@ class EventsController extends Controller
         return view('pages.myEvents', compact('events', 'adminIds'));
     }
 
+    public function editEvent(Request $request)
+    {
+        if ($request->get('id') != null) {
+            $eventId = $request->get('id');
+        }
+
+        $adminIds = $this->getAdminIds();
+        $eventInfo = Event::where('id', $eventId)->get();
+
+        return view('pages.editEvent', compact('eventInfo', 'adminIds'));
+    }
+
+    public function submitEventChanges(Request $request)
+    {
+        $name = $request->get('name');
+        $desc = $request->get('desc');
+        $price = $request->get('price');
+        $link = $request->get('link');
+        $eventId = $request->get('eventId');
+
+        $data = [
+            'name' => $name,
+            'desc' => $desc,
+            'price' => $price,
+            'link' => $link
+        ];
+
+        DB::table('events')->where('id', $eventId)->update($data);
+    }
+
     private function getAdminIds()
     {
         $adminType = DB::table('types')->where('types', 'Administrator')->get();

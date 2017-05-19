@@ -23,6 +23,8 @@ Route::get('upcomingEvents', 'EventsController@mainList')->name('upcomingEvents'
 Route::post('addEvent', 'EventsController@addEvent')->name('addEvent');
 Route::get('eventpage', 'EventsController@eventPage')->name('eventpage');
 Route::get('myEvents', 'EventsController@myEvents')->name('myEvents');
+Route::get('editEvent', 'EventsController@editEvent')->name('editEvent');
+Route::post('submitEventChanges', 'EventsController@submitEventChanges')->name('submitEventChanges');
 
 Route::get('attendEvent', 'AttendController@attendEvent')->name('attendEvent');
 Route::get('notAttendEvent', 'AttendController@notAttendEvent')->name('notAttendEvent');

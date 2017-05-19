@@ -13,7 +13,7 @@
                             {{ Html::image('img/' . $event->picture) }}
                             <div class="caption">
                                 <h4 class="pull-right">{{$event->price}} RON</h4>
-                                <h4><a href="{{ route('eventpage', ['id' => $event->id] ) }}">{{ $event->name }}</a>
+                                <h4><a href="{{ route('editEvent', ['id' => $event->id]) }}">{{ $event->name }}</a>
                                 </h4>
                                 <p class="read-more">{{ $event->desc }}</p>
                             </div>
