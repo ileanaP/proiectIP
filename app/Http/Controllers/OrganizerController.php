@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Feedback;
 use App\Org;
 use Illuminate\Http\Request;
 use App\User;
@@ -27,9 +28,15 @@ class OrganizerController extends Controller
         $idOrganizer = $request->get('id');
         $events = Event::where("org_id", $idOrganizer)->get();
 
+        foreach ($events as $event) {
+            $feedback = Feedback::where("event_id", $event->id)->get();
+            $event->average = $this->getAverageFeedbackStars($feedback);
+        }
+
+        $users = User::where('type', 4)->get();
         $adminIds = $this->getAdminIds();
 
-        return view('pages.organizerEventsPage', compact('events', 'adminIds'));
+        return view('pages.organizerEventsPage', compact('events', 'adminIds', 'users'));
     }
 
     public function deleteOrganizers(Request $request)
@@ -80,6 +87,20 @@ class OrganizerController extends Controller
 
         return $adminIds;
     }
+
+    private function getAverageFeedbackStars($feedback)
+    {
+        $sum = 0;
+        foreach ($feedback as $feedbackItem) {
+            $sum += $feedbackItem->stars;
+        }
+
+        if (count($feedback)) {
+            return $sum/ count($feedback);
+        } else {
+            return -1;
+        }
+     }
 
 
 }

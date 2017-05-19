@@ -77,7 +77,7 @@ class EventsController extends Controller
         $event->save();
         if ($request->file('image') !== null) {
             $imageName = $event->id . '_event_title_image.jpg';
-            Event::where('id',$event->id)->update(['picture'=>$imageName]);
+            Event::where('id' ,$event->id)->update(['picture' => $imageName]);
             $request->file('image')->move('img/', $imageName);
         }
 
