@@ -12,7 +12,6 @@
                   @elseif ($userFeedback->stars == 4) &#x2605;&#x2605;&#x2605;&#x2605;
                   @elseif ($userFeedback->stars == 5) &#x2605;&#x2605;&#x2605;&#x2605;&#x2605;
                   @endif
-
               </td>
                 <td align="right">{{ $userFeedback->created_at }}
                 <br></td>

@@ -51,7 +51,7 @@ class EventsController extends Controller
 
         $adminIds = $this->getAdminIds();
 
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
+        return view('pages.eventPage', compact('id', 'event', 'n', 'pics', 'org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
     }
 
     public function addEventForm(Request $request)
@@ -82,6 +82,15 @@ class EventsController extends Controller
         }
 
         return $this->mainList($request);
+    }
+
+    public function myEvents(Request $request)
+    {
+        $orgId = $request->get('id');
+        $events = Event::where('org_id', $orgId)->get();
+
+        $adminIds = $this->getAdminIds();
+        return view('pages.myEvents', compact('events', 'adminIds'));
     }
 
     private function getAdminIds()
