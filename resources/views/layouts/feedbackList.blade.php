@@ -1,4 +1,5 @@
 <div>
+    @if (count($feedback))
     <p class="lead">Mai multe opinii despre eveniment:</p>
     <div class="list-group">
         <table class="table" style="border-top: 1px solid #cdd0d4">
@@ -11,7 +12,6 @@
                   @elseif ($userFeedback->stars == 4) &#x2605;&#x2605;&#x2605;&#x2605;
                   @elseif ($userFeedback->stars == 5) &#x2605;&#x2605;&#x2605;&#x2605;&#x2605;
                   @endif
-
               </td>
                 <td align="right">{{ $userFeedback->created_at }}
                 <br></td>
@@ -23,4 +23,7 @@
         @endforeach
         </table>
     </div>
+    @else
+    <p class="lead">Nu exista feedback pentru acest eveniment!</p>
+    @endif
 </div>

@@ -43,6 +43,11 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('org', Org::all());
         });
 
+
+        view()->composer('pages.organizerEventsPage', function($view) {
+            $view->with('org', Org::all());
+        });
+
         view()->composer('includes.header', function($view) {
             $view->with('org', Org::all());
         });

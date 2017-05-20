@@ -51,7 +51,7 @@ class EventsController extends Controller
 
         $adminIds = $this->getAdminIds();
 
-        return view('pages.eventPage', compact('id', 'event', 'n','pics','org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
+        return view('pages.eventPage', compact('id', 'event', 'n', 'pics', 'org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
     }
 
     public function addEventForm(Request $request)
@@ -77,11 +77,50 @@ class EventsController extends Controller
         $event->save();
         if ($request->file('image') !== null) {
             $imageName = $event->id . '_event_title_image.jpg';
-            Event::where('id',$event->id)->update(['picture'=>$imageName]);
+            Event::where('id' ,$event->id)->update(['picture' => $imageName]);
             $request->file('image')->move('img/', $imageName);
         }
 
         return $this->mainList($request);
+    }
+
+    public function myEvents(Request $request)
+    {
+        $orgId = $request->get('id');
+        $events = Event::where('org_id', $orgId)->get();
+
+        $adminIds = $this->getAdminIds();
+        return view('pages.myEvents', compact('events', 'adminIds'));
+    }
+
+    public function editEvent(Request $request)
+    {
+        if ($request->get('id') != null) {
+            $eventId = $request->get('id');
+        }
+
+        $adminIds = $this->getAdminIds();
+        $eventInfo = Event::where('id', $eventId)->get();
+
+        return view('pages.editEvent', compact('eventInfo', 'adminIds'));
+    }
+
+    public function submitEventChanges(Request $request)
+    {
+        $name = $request->get('name');
+        $desc = $request->get('desc');
+        $price = $request->get('price');
+        $link = $request->get('link');
+        $eventId = $request->get('eventId');
+
+        $data = [
+            'name' => $name,
+            'desc' => $desc,
+            'price' => $price,
+            'link' => $link
+        ];
+
+        DB::table('events')->where('id', $eventId)->update($data);
     }
 
     private function getAdminIds()
