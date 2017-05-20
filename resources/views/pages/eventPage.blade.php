@@ -48,7 +48,7 @@
                     <p>Mai multe informatii: <a target="_blank" href="{{ $event[0]->link }}">{{ $event[0]->link }}</a>.</p>
                 </div>
                 <div class="caption-full">
-                    @if ($event[0]->data < date('Y-m-d h:i:s'))
+                    @if ($event[0]->data < date('Y-m-d h:i:s') && Auth::check())
                         <a class="btn btn-default disabled pull-right">Participa</a>
                     @elseif (Auth::check())
                         @if (!$attendees->isEmpty())
@@ -71,8 +71,9 @@
                                     <li><a href="{{ route('profile', ['id' => $a->id] ) }}">{{ $a->user }}</a></li>
                             @endforeach
                         </ul>
-                    @else
+                    @elseif ($event[0]->data > date('Y-m-d h:i:s'))
                          <p>Acest eveniment nu are momentan participanti!</p>
+                    @else <p>Acest eveniment nu a avut participanti!</p>
                     @endif
                 </div>
 
