@@ -199,14 +199,14 @@ class RouteTest extends DuskTestCase
                 ->assertSee('Adauga un nou eveniment din urmatoarele categorii disponibile:')
                 ->assertPathIs('/proiectIP/public/addEventForm')
 
-                ->type('title', 'titlu nou' . rand(1,100))
+                ->type('name', 'titlu nou' . rand(1,100))
                 ->type('description', 'descriere')
                 ->type('address', 'addresa dummy')
                 ->type('price', 12)
                 ->type('link', 'www.event.com')
 
                 ->press('.submit')
-                ->assertPathIs('/proiectIP/public/addEvent');
+                ->assertPathIs('/proiectIP/public/upcomingEvents');
         });
     }
 
