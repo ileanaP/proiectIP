@@ -21,7 +21,7 @@
                                 <br>
                                 <div>Titlu:</div>
                                 <div class="form-group">
-                                    <input type="text" name="name" id="name" class="form-control">
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
                                     @if ($errors->has('name'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -67,6 +67,16 @@
                                     </span>
                                     @endif
                                 </div>
+
+                                <div class="form-group">Data evenimentului:
+                                    <input type="text" name="date" id="date" value="{{ old('date') }}" class="form-control">
+                                    @if ($errors->has('date'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
 
                                 <div class="form-group">Adauga o imagine reprezentativa:
 

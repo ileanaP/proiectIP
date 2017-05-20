@@ -68,6 +68,8 @@ class EventsController extends Controller
         $event->price = $request->get('price') != null ? $request->get('price') : '';
         $event->address = $request->get('address') != null ? $request->get('address') : '';
         $event->category = $request->get('categoryId');
+        $event->data = $request->get('date');
+
         $event->save();
         if ($request->file('image') !== null) {
             $imageName = $event->id . '_event_title_image.jpg';
@@ -86,8 +88,9 @@ class EventsController extends Controller
             'name' => 'required|max:255|unique:events',
             'description' => 'required|max:255',
             'link' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'address' => 'required',
+            'date' => 'required|date',
         ]);
     }
     public function myEvents(Request $request)
