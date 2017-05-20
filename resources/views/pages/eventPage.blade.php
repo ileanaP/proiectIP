@@ -49,6 +49,7 @@
                 </div>
                 <div class="caption-full">
                     @if ($event[0]->data < date('Y-m-d h:i:s'))
+                        <a class="btn btn-default disabled pull-right">Participa</a>
                     @elseif (Auth::check())
                         @if (!$attendees->isEmpty())
                             @if(in_array(Auth::user()->id,$usrid))
@@ -59,9 +60,8 @@
                         @else
                             <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Participa</a>
                         @endif
-                    @else
-                        <a class="btn btn-default disabled pull-right">Participa</a>
                     @endif
+
                     <h4>Organizator</h4>
                     <p>{{ $org[0]->name }}</p>
                     <h4>Participanti</h4>
@@ -113,10 +113,12 @@
             </div>
 
 
+            @if ($event[0]->data < date('Y-m-d h:i:s'))
             <div>
                 @include('layouts.feedbackList')
 
             </div>
+            @endif
 
         </div>
 
