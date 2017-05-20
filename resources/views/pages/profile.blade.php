@@ -57,7 +57,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="confirmedPassword">Repetati parola noua</label>
                                 <div class="col-md-5">
-                                    <input id="confirmedPassword" name="confirmedPassword" type="password" class="form-control input-md">
+                                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control input-md">
+                                    @if ($errors->has('password_confirmed'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmed') }}</strong>
+                                    </span>
+                                    @endif
+
                                 </div>
                             </div>
 
@@ -117,10 +123,20 @@
         </div>
 
         <div>
-            @if  ($saveMessage != '')
+            @if  ($saveMessage != '' && !$errors->all())
                 <h4> {{ $saveMessage }}</h4>
             @endif
         </div>
+        @if ($errors->has('password'))
+            <span class="help-block">
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
+        @endif
+        @if ($errors->has('password_confirmation'))
+            <span class="help-block">
+                <strong>{{ $errors->first('password_confirmation') }}</strong>
+            </span>
+        @endif
 
     </div>
 

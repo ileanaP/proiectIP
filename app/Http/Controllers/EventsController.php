@@ -87,21 +87,7 @@ class EventsController extends Controller
         }
         return redirect()->route('upcomingEvents');
     }
-    /**
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255|unique:events',
-            'description' => 'required|max:255',
-            'link' => 'required',
-            'price' => 'required|numeric',
-            'address' => 'required',
-            'date' => 'required|date',
-        ]);
-    }
+
     public function myEvents(Request $request)
     {
         if ($this->userIsOrganizer($request)) {
@@ -190,4 +176,21 @@ class EventsController extends Controller
             return false;
         }
     }
+
+    /**
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255|unique:events',
+            'description' => 'required|max:255',
+            'link' => 'required',
+            'price' => 'required|numeric',
+            'address' => 'required',
+            'date' => 'required|date',
+        ]);
+    }
+
 }

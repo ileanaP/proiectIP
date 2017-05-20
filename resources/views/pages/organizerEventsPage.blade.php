@@ -34,7 +34,7 @@
         @if (count($events) == 0)
             <h4> Acest organizator nu are evenimente in trecut!</h4>
         @else
-        <h4>Toate evenimentele din trecut: </h4>
+        <h4>Toate evenimentele din trecut ale organizatorului: </h4>
         <table class="table" style="border-top: 1px solid #cdd0d4">
             <tr><th>Nume eveniment</th>
                 <th>Nota eveniment (maxim 5)</th>
