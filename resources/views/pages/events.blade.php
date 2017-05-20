@@ -8,6 +8,7 @@
 
             <div class="row">
 
+                @if (count($events))
                 @foreach($events as $event)
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail" style="border:0px">
@@ -23,6 +24,9 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <h4>Momentan nu exista evenimente inregistrate in aceasta categorie!</h4>
+                @endif
 
             </div>
 
