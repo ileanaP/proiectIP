@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.noMenu')
 @section('content')
 <div class="container">
     <div class="row">

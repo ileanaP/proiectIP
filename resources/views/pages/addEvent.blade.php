@@ -18,39 +18,68 @@
 
                                 @include('layouts.categoryList')
                                 <br><br>
-<br>
+                                <br>
                                 <div>Titlu:</div>
                                 <div class="form-group">
-                                    <input type="text" name="title" id="title" class="form-control">
+                                    <input type="text" name="name" id="name" class="form-control">
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                    @endif
+
                                 </div>
 
                                 <div class="form-group">Descriere:
-                                    <label class="sr-only" for="form-password">Descriere eveniment</label>
                                     <textarea name="description" id="description" class="form-control">
                                     </textarea>
+                                    @if ($errors->has('description'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                    @endif
+
                                 </div>
 
                                 <div class="form-group">Adresa:
-                                    <label class="sr-only" for="form-username">Adresa:</label>
-                                    <input type="text" name="address" id="address" class="form-control">
+                                    <input type="text" name="address" id="address" value="{{ old('address') }}" class="form-control">
+                                    @if ($errors->has('address'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
 
                                 <div class="form-group">Pretul unui bilet la eveniment:
-                                    <input type="text" name="price" id="price" class="form-control">
+                                    <input type="text" name="price" id="price" value="{{ old('price') }}" class="form-control">
+                                    @if ($errors->has('price'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
 
                                 <div class="form-group">Link catre pagina evenimentului:
-                                    <input type="text" name="link" id="link" class="form-control">
+                                    <input type="text" name="link" id="link" value="{{ old('link') }}" class="form-control">
+                                    @if ($errors->has('link'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('link') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
 
                                 <div class="form-group">Adauga o imagine reprezentativa:
 
-                                <input type="file" name="image" id="image">
+                                    <input type="file" name="image" id="image">
 
                                 </div>
                                 <button type="submit" class="submit">
                                     Submit
                                 </button>
+
+                                @if ($errorMessage != '')
+                                    <h4>{{ $errorMessage }}</h4>
+                                @endif
 
                             </form>
                         </div>

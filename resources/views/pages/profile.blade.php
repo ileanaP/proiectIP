@@ -42,7 +42,6 @@
                                 <label class="col-md-4 control-label" for="email">Email</label>
                                 <div class="col-md-5">
                                     <input id="email" name="email" type="text" value="{{$user[0]->email}}" class="form-control input-md">
-                                    <span class="help-block">Schimbati-va email-ul</span>
                                 </div>
                             </div>
 
@@ -51,7 +50,6 @@
                                 <label class="col-md-4 control-label" for="password">Parola noua</label>
                                 <div class="col-md-4">
                                     <input id="password" name="password" type="password" class="form-control input-md">
-                                    <span class="help-block">Schimbati-va parola</span>
                                 </div>
                             </div>
 
@@ -60,7 +58,6 @@
                                 <label class="col-md-4 control-label" for="confirmedPassword">Repetati parola noua</label>
                                 <div class="col-md-5">
                                     <input id="confirmedPassword" name="confirmedPassword" type="password" class="form-control input-md">
-                                    <span class="help-block">Repetati parola noua</span>
                                 </div>
                             </div>
 
@@ -69,7 +66,6 @@
                                 <label class="col-md-4 control-label" for="name">Nume</label>
                                 <div class="col-md-5">
                                     <input id="name" name="name" type="text" value="{{$user[0]->name}}" class="form-control input-md">
-                                    <span class="help-block">Schimbati-va numele</span>
                                 </div>
                             </div>
 
@@ -78,7 +74,6 @@
                                 <label class="col-md-4 control-label" for="surname">Prenume</label>
                                 <div class="col-md-5">
                                     <input id="surname" name="surname" type="text" value="{{$user[0]->surname}}" class="form-control input-md">
-                                    <span class="help-block">Schimbati-va prenumele</span>
                                 </div>
                             </div>
 
@@ -100,7 +95,8 @@
                                 <label class="col-md-4 control-label" for="image">Avatar</label>
                                 <div class="col-md-4">
                                     <input id="image" name="image" class="input-file" type="file">
-                                </div>
+                                </div><br>
+                                <span class="help-block">Va puteti modifica avatarul deja existent introducand o noua poza;</span>
                             </div>
 
                             <div class="form-group">
@@ -120,7 +116,12 @@
             </div>
         </div>
 
-    </div>
+        <div>
+            @if  ($saveMessage != '')
+                <h4> {{ $saveMessage }}</h4>
+            @endif
+        </div>
 
+    </div>
 
 @stop
