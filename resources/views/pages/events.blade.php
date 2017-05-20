@@ -11,7 +11,7 @@
                 @foreach($events as $event)
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail" style="border:0px">
-                            {{ Html::image('img/' . $event->picture) }}
+                            {{ Html::image('img/' . $event->picture, '', ['width' => 250, 'height' => 150]) }}
                             <div class="caption">
                                 <h4 class="pull-right">{{$event->price}} RON</h4>
                                 <h4><a href="{{ route('eventpage', ['id' => $event->id] ) }}">{{ $event->name }}</a>

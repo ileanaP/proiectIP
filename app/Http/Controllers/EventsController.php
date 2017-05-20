@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -8,6 +10,7 @@ use App\User;
 use App\Attend;
 use App\Org;
 use Illuminate\Support\Facades\Validator;
+
 class EventsController extends Controller
 {
     public function mainList(Request $request)

@@ -23,7 +23,7 @@
 
                                 @foreach ($pics as $i => $pic)
                                 <div @if ($i == 0) class="item active" @else class="item" @endif>
-                                    {{ Html::image('img/' . $pic->picture, '', array('class' => 'slide-image')) }}
+                                    {{ Html::image('img/' . $pic->picture, '', ['class' => 'slide-image', 'width' => 250, 'height' => 150]) }}
                                 </div>
                                 @endforeach
 
@@ -111,6 +111,8 @@
                     </div>
 
             </div>
+
+
             <div>
                 @include('layouts.feedbackList')
 
