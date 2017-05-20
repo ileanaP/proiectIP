@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Picture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Event;
 use App\User;
@@ -23,6 +24,7 @@ class EventsController extends Controller
         $adminIds = $this->getAdminIds();
         return view('pages.events', compact('events', 'adminIds'));
     }
+
     public function searchEventByCategory(Request $request)
     {
         $id = $request->query('id');
@@ -30,6 +32,7 @@ class EventsController extends Controller
         $adminIds = $this->getAdminIds();
         return view('pages.events', compact('events', 'adminIds'));
     }
+
     public function eventPage(Request $request)
     {
         $id = $request->query('id');
@@ -47,12 +50,18 @@ class EventsController extends Controller
         $adminIds = $this->getAdminIds();
         return view('pages.eventPage', compact('id', 'event', 'n', 'pics', 'org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
     }
+
     public function addEventForm(Request $request)
     {
-        $errorMessage = $request->get('errorMessage') != null ? $request->get('errorMessage') : '';
-        $adminIds = $this->getAdminIds();
-        return view('pages.addEvent', compact('adminIds', 'errorMessage'));
+        if ($this->userIsOrganizer($request)) {
+            $errorMessage = $request->get('errorMessage') != null ? $request->get('errorMessage') : '';
+            $adminIds = $this->getAdminIds();
+            return view('pages.addEvent', compact('adminIds', 'errorMessage'));
+        } else {
+            return view('errors.404');
+        }
     }
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -95,13 +104,19 @@ class EventsController extends Controller
     }
     public function myEvents(Request $request)
     {
-        $userId = $request->user()->id;
-        $orgInfo = Org::where('user_id', $userId)->get();
-        $orgId = $orgInfo[0]->id;
-        $events = Event::where('org_id', $orgId)->get();
-        $adminIds = $this->getAdminIds();
-        return view('pages.myEvents', compact('events', 'adminIds'));
+        if ($this->userIsOrganizer($request)) {
+
+            $userId = $request->user()->id;
+            $orgInfo = Org::where('user_id', $userId)->get();
+            $orgId = $orgInfo[0]->id;
+            $events = Event::where('org_id', $orgId)->get();
+            $adminIds = $this->getAdminIds();
+            return view('pages.myEvents', compact('events', 'adminIds'));
+        } else {
+            return view('errors.404');
+        }
     }
+
     public function editEvent(Request $request)
     {
         if ($request->get('id') != null) {
@@ -116,6 +131,8 @@ class EventsController extends Controller
             } else {
                 return view('errors.404');
             }
+        } else {
+            return view('errors.404');
         }
     }
     public function submitEventChanges(Request $request)
@@ -147,6 +164,7 @@ class EventsController extends Controller
         }
         return redirect()->route('editEvent', ['id' => $eventId, 'saveMessage' => 'Modiifcarile au fost efectuate cu succes!']);
     }
+
     private function getAdminIds()
     {
         $adminType = DB::table('types')->where('types', 'Administrator')->get();
@@ -156,5 +174,20 @@ class EventsController extends Controller
             $adminIds[] = $adminInfo->id;
         }
         return $adminIds;
+    }
+
+    private function userIsOrganizer(Request $request)
+    {
+        if (!Auth::check()) {
+            return false;
+        } else {
+            $userId = $request->user()->id;
+
+            $orgInfo = Org::where('user_id', $userId)->get();
+            if (count($orgInfo)) {
+                return true;
+            }
+            return false;
+        }
     }
 }
