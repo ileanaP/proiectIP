@@ -13,10 +13,7 @@
 
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
-Route::get('calendar', function()
-{
-    return view('pages.testcalendar');
-});
+Route::get('calendar', 'CalendarController@index');
 
 Route::get('addEventForm', 'EventsController@addEventForm');
 Route::get('upcomingEvents', 'EventsController@mainList')->name('upcomingEvents');

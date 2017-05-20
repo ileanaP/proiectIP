@@ -23,8 +23,8 @@ class CreateEventsTable extends Migration
             $table->text('desc');
             $table->string('picture');
             $table->string('link');
-            $table->dateTime('startDate');
-            $table->dateTime('endDate');
+            $table->dateTime('data');
+            $table->dateTime('endDate')->nullable();
             $table->integer('org_id')->unsigned();
             $table->timestamps();
         });
