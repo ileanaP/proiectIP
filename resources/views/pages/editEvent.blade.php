@@ -46,11 +46,21 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="image">Imagine</label>
+                                <div class="col-md-4">
+                                    <input id="mainImage" name="mainImage" class="input-file" type="file">
+                                    <span class="help-block">Aici puteti schimba imaginea principala a evenimentului;</span>
+                                </div>
+                            </div>
+
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="image">Poze</label>
                                 <div class="col-md-4">
                                     <input id="image" name="image" class="input-file" type="file">
-                                    <span class="help-block">Puteti adauga poze care sa apara pe pagina evenimentului</span>
+                                    <span class="help-block">Aici puteti adauga poze care sa apara pe pagina evenimentului;</span>
                                 </div>
                             </div>
                             <input type="hidden" id="eventId" name="eventId" value="{{$eventInfo[0]->id}}">
@@ -67,9 +77,13 @@
                         </fieldset>
                     </form>
 
-
                 </div>
             </div>
+        </div>
+        <div>
+            @if ($saveMessage != '')
+                <h4> {{ $saveMessage }} </h4>
+            @endif
         </div>
 
     </div>

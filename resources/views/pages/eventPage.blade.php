@@ -23,7 +23,7 @@
 
                                 @foreach ($pics as $i => $pic)
                                 <div @if ($i == 0) class="item active" @else class="item" @endif>
-                                    {{ Html::image('img/' . $pic->picture, '', array('class' => 'slide-image')) }}
+                                    {{ Html::image('img/' . $pic->picture, '', ['class' => 'slide-image', 'width' => 250, 'height' => 150]) }}
                                 </div>
                                 @endforeach
 
@@ -48,7 +48,8 @@
                     <p>Mai multe informatii: <a target="_blank" href="{{ $event[0]->link }}">{{ $event[0]->link }}</a>.</p>
                 </div>
                 <div class="caption-full">
-                    @if ($event[0]->data < date('Y-m-d h:i:s'))
+                    @if ($event[0]->data < date('Y-m-d h:i:s') && Auth::check())
+                        <a class="btn btn-default disabled pull-right">Participa</a>
                     @elseif (Auth::check())
                         @if (!$attendees->isEmpty())
                             @if(in_array(Auth::user()->id,$usrid))
@@ -59,9 +60,8 @@
                         @else
                             <a class="btn btn-danger pull-right" href="{{ route('attendEvent', ['id' => $id] ) }}">Participa</a>
                         @endif
-                    @else
-                        <a class="btn btn-default disabled pull-right">Participa</a>
                     @endif
+
                     <h4>Organizator</h4>
                     <p>{{ $org[0]->name }}</p>
                     <h4>Participanti</h4>
@@ -71,8 +71,9 @@
                                     <li><a href="{{ route('profile', ['id' => $a->id] ) }}">{{ $a->user }}</a></li>
                             @endforeach
                         </ul>
-                    @else
+                    @elseif ($event[0]->data > date('Y-m-d h:i:s'))
                          <p>Acest eveniment nu are momentan participanti!</p>
+                    @else <p>Acest eveniment nu a avut participanti!</p>
                     @endif
                 </div>
 
@@ -111,10 +112,14 @@
                     </div>
 
             </div>
+
+
+            @if ($event[0]->data < date('Y-m-d h:i:s'))
             <div>
                 @include('layouts.feedbackList')
 
             </div>
+            @endif
 
         </div>
 

@@ -8,10 +8,13 @@
 
             <div class="row">
 
+                @if (count($events))
                 @foreach($events as $event)
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail" style="border:0px">
-                            {{ Html::image('img/' . $event->picture) }}
+                            @if($event->picture != '')
+                            {{ Html::image('img/' . $event->picture, '', ['width' => 250, 'height' => 150]) }}
+                            @endif
                             <div class="caption">
                                 <h4 class="pull-right">{{$event->price}} RON</h4>
                                 <h4><a href="{{ route('eventpage', ['id' => $event->id] ) }}">{{ $event->name }}</a>
@@ -21,6 +24,9 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <h4>Momentan nu exista evenimente inregistrate in aceasta categorie!</h4>
+                @endif
 
             </div>
 

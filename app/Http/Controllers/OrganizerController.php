@@ -15,29 +15,36 @@ class OrganizerController extends Controller
         $this->middleware('auth');
     }
 
-    public function seeOrganizers()
+    public function seeOrganizers(Request $request)
     {
-        $users = User::where('type', 4)->get();
-
-        $adminIds = $this->getAdminIds();
-        return view('pages.adminPageModifyOrgs', compact('users', 'adminIds'));
+        if ($this->isAdmin($request)) {
+            $users = User::where('type', 4)->get();
+            $adminIds = $this->getAdminIds();
+            return view('pages.adminPageModifyOrgs', compact('users', 'adminIds'));
+        } else {
+            return view('errors.404');
+        }
     }
 
     public function getOrganizerDetails(Request $request)
     {
-        $idOrganizer = $request->get('id');
-        $events = Event::where("org_id", $idOrganizer)->get();
+        if ($this->isAdmin($request)) {
+            $idOrganizer = $request->get('id');
+            $events = Event::where("org_id", $idOrganizer)->get();
 
-        foreach ($events as $event) {
-            $feedback = Feedback::where("event_id", $event->id)->get();
-            $event->average = $this->getAverageFeedbackStars($feedback);
+            foreach ($events as $event) {
+                $feedback = Feedback::where("event_id", $event->id)->get();
+                $event->average = $this->getAverageFeedbackStars($feedback);
+            }
+
+            $users = User::where('type', 4)->get();
+            $adminIds = $this->getAdminIds();
+
+            return view('pages.organizerEventsPage', compact('events', 'adminIds', 'users'));
+        } else {
+            return view('errors.404');
         }
-
-        $users = User::where('type', 4)->get();
-        $adminIds = $this->getAdminIds();
-
-        return view('pages.organizerEventsPage', compact('events', 'adminIds', 'users'));
-    }
+   }
 
     public function deleteOrganizers(Request $request)
     {
@@ -100,6 +107,16 @@ class OrganizerController extends Controller
         } else {
             return -1;
         }
+     }
+
+     private function isAdmin(Request $request)
+     {
+         $userInfo = User::where('id', $request->user()->id)->get();
+         if ($userInfo[0]->type != 1) {
+             return false;
+         }
+
+         return true;
      }
 
 

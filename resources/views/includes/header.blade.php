@@ -18,7 +18,7 @@
                     @foreach($org as $organizer)
                         @if (Auth::user()->id == $organizer->user_id)
                             <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
-                            <li><a id="myEvents" href="{{ route('myEvents', ['id' => $organizer->id]) }}">Evenimentele mele</a></li>
+                            <li><a id="myEvents" href="{{ route('myEvents') }}">Evenimentele mele</a></li>
                         @endif
                     @endforeach
                 @endif
