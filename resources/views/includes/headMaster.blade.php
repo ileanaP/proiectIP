@@ -7,11 +7,10 @@
 
 {{ Html::style('css/bootstrap.css') }}
 <!-- Custom Theme files -->
-{{ Html::style('css/style.css') }}
 {{ Html::script('js/jquery-1.11.1.min.js') }}
 {{ Html::script('simpleCart.min.js') }}
 {{ Html::style('css/stars.css') }}
-
+{{ Html::style('css/style.css') }}
 <!--banner-slider--><!-- ce face banner-slider-ul? :)) Ileana -->
 <div class="banner two">
 </div>

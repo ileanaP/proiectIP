@@ -6,7 +6,6 @@
 
 {{ Html::style('css/bootstrap.css') }}
 {{ Html::style('css/bootstrap-theme.css') }}
-{{ Html::style('css/style.css') }}
 
 {{ Html::script('js/jquery-3.2.0.min.js') }}
 {{ Html::script('js/bootstrap.js') }}
@@ -28,3 +27,5 @@
 {{ Html::script('css/jquery-ui-1.12.1/jquery-ui.js') }}
 {{ Html::style('css/timepicker/jquery.timepicker.css') }}
 {{ Html::script('css/timepicker/jquery.timepicker.min.js') }}
+
+{{ Html::style('css/style.css') }}
