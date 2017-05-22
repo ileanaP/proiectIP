@@ -11,6 +11,7 @@ use App\User;
 use App\Attend;
 use App\Org;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class EventsController extends Controller
 {
@@ -77,7 +78,10 @@ class EventsController extends Controller
         $event->price = $request->get('price') != null ? $request->get('price') : '';
         $event->address = $request->get('address') != null ? $request->get('address') : '';
         $event->category = $request->get('categoryId');
-        $event->data = $request->get('date');
+        $startDate=new Carbon($request->get('date') . " " .$request->get('hour'));
+        $event->data = $startDate;
+        $endDate=new Carbon($request->get('dateFinal') . " " .$request->get('hourFinal'));
+        $event->endDate = $endDate;
 
         $event->save();
         if ($request->file('image') !== null) {
@@ -190,6 +194,7 @@ class EventsController extends Controller
             'price' => 'required|numeric',
             'address' => 'required',
             'date' => 'required|date',
+            'dateFinal' => 'required|date',
             'image' => 'mimes:jpeg,jpg,png,bmp | max:1024'
         ]);
     }

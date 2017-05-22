@@ -23,3 +23,8 @@
 {{ Html::script('assetsLogin/js/jquery.backstretch.min.js') }}
 {{ Html::script('assetsLogin/js/scripts.js') }}
 {{ Html::script('assetsLogin/js/placeholder.js') }}
+
+{{ Html::style('css/jquery-ui-1.12.1/jquery-ui.css') }}
+{{ Html::script('css/jquery-ui-1.12.1/jquery-ui.js') }}
+{{ Html::style('css/timepicker/jquery.timepicker.css') }}
+{{ Html::script('css/timepicker/jquery.timepicker.min.js') }}

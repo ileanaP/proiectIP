@@ -9,17 +9,18 @@
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Adauga un nou eveniment din urmatoarele categorii disponibile:</h3>
+                                <h3>Adauga un nou eveniment:</h3>
                             </div>
                         </div>
                         <div class="form-bottom">
                             <form role="form" action="{{ route('addEvent') }}" enctype="multipart/form-data" method="POST" class="login-form">
                                 {{ csrf_field() }}
 
+                                <div>Categorie:</div>
                                 @include('layouts.categoryList')
-                                <br><br>
-                                <br>
+
                                 <div>Titlu:</div>
+
                                 <div class="form-group">
                                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
                                     @if ($errors->has('name'))
@@ -68,11 +69,35 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group">Data evenimentului:
-                                    <input type="text" name="date" id="date" value="{{ old('date') }}" class="form-control">
+                                <script>
+                                    $( function() {
+                                        $( "#date" ).datepicker();
+                                        $( "#hour" ).timepicker();
+                                        $( "#dateFinal" ).datepicker();
+                                        $( "#hourFinal" ).timepicker();
+                                    } );
+                                </script>
+
+                                <div class="form-group">Data si ora de inceput:
+                                    <input type="text" name="date" id="date" value="{{ old('date') }}" class="form-control"
+                                           style="width:150px;display:inline-block">
+                                    <input type="text" name="hour" id="hour" value="{{ old('hour') }}" class="form-control"
+                                           style="width:75px;display:inline-block">
                                     @if ($errors->has('date'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group">Data si ora de sfarsit:
+                                    <input type="text" name="dateFinal" id="dateFinal" value="{{ old('dateFinal') }}" class="form-control"
+                                           style="width:150px;display:inline-block">
+                                    <input type="text" name="hourFinal" id="hourFinal" value="{{ old('hourFinal') }}" class="form-control"
+                                           style="width:75px;display:inline-block">
+                                    @if ($errors->has('dateFinal'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('dateFinal') }}</strong>
                                     </span>
                                     @endif
                                 </div>
