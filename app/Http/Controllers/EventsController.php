@@ -190,6 +190,7 @@ class EventsController extends Controller
             'price' => 'required|numeric',
             'address' => 'required',
             'date' => 'required|date',
+            'image' => 'mimes:jpeg,jpg,png,bmp | max:1024'
         ]);
     }
 

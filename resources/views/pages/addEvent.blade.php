@@ -81,7 +81,12 @@
                                 <div class="form-group">Adauga o imagine reprezentativa:
 
                                     <input type="file" name="image" id="image">
-
+                                    <span class="help-block">Dimensiunea maxima: 1MB.</span>
+                                    @if ($errors->has('image'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('image') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                                 <button type="submit" class="submit">
                                     Submit
