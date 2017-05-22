@@ -148,7 +148,7 @@ class EventsController extends Controller
             Event::where('id', $eventId)->update(['picture' => $imageName]);
             $request->file('mainImage')->move('img/', $imageName);
         }
-        return redirect()->route('editEvent', ['id' => $eventId, 'saveMessage' => 'Modiifcarile au fost efectuate cu succes!']);
+        return redirect()->route('editEvent', ['id' => $eventId, 'saveMessage' => 'Modificarile au fost efectuate cu succes!']);
     }
 
     private function getAdminIds()

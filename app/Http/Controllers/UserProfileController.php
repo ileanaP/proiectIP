@@ -52,7 +52,7 @@ class UserProfileController extends Controller
         }
 
         DB::table('users')->where('id', $userId)->update($data);
-        return redirect()->route('profile', ['id' => $userId, 'saveMessage' => 'Modiifcarile au fost efectuate cu succes!']);
+        return redirect()->route('profile', ['id' => $userId, 'saveMessage' => 'Modificarile au fost efectuate cu succes!']);
     }
 
     private function getAdminIds()
