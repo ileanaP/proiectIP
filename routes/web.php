@@ -42,4 +42,3 @@ Route::get('logout', [
     'as' => 'account-sign-out',
     'uses' => 'Auth\LoginController@logout'
 ]);
-

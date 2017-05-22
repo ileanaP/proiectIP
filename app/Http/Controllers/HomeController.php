@@ -36,4 +36,8 @@ class HomeController extends Controller
 
         return $adminIds;
     }
+
+    public function exception(){
+        return view('errors.404');
+    }
 }
