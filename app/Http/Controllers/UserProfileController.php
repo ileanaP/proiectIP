@@ -73,7 +73,8 @@ class UserProfileController extends Controller
     private function validator(array $data)
     {
         return Validator::make($data, [
-            'password' => 'nullable|min:6|confirmed'
+            'password' => 'nullable|min:6|confirmed',
+            'image' => 'mimes:jpeg,jpg,png,bmp | max:1024'
         ]);
     }
 

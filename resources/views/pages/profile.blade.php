@@ -58,12 +58,6 @@
                                 <label class="col-md-4 control-label" for="confirmedPassword">Repetati parola noua</label>
                                 <div class="col-md-5">
                                     <input id="password_confirmation" name="password_confirmation" type="password" class="form-control input-md">
-                                    @if ($errors->has('password_confirmed'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmed') }}</strong>
-                                    </span>
-                                    @endif
-
                                 </div>
                             </div>
 
@@ -87,7 +81,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="location">Locatie</label>
                                 <div class="col-md-5">
-                                    <select id="location" name="location" class="form-control">
+                                    <select id="location" name="location" clas
                                         <option value="" selected>{{$location[0]->location}}</option>
                                         @foreach($locations as $loc)
                                             <option value="{{$loc->id}}">{{$loc->location}}</option>
@@ -102,7 +96,7 @@
                                 <div class="col-md-4">
                                     <input id="image" name="image" class="input-file" type="file">
                                 </div><br>
-                                <span class="help-block">Va puteti modifica avatarul deja existent introducand o noua poza;</span>
+                                <span class="help-block">Dimensiunea maxima: 1MB.</span>
                             </div>
 
                             <div class="form-group">
@@ -135,6 +129,11 @@
         @if ($errors->has('password_confirmation'))
             <span class="help-block">
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
+            </span>
+        @endif
+        @if ($errors->has('image'))
+            <span class="help-block">
+                <strong>{{ $errors->first('image') }}</strong>
             </span>
         @endif
 
