@@ -82,7 +82,7 @@ class EventsController extends Controller
         $event->data = $startDate;
         $endDate=new Carbon($request->get('dateFinal') . " " .$request->get('hourFinal'));
         $event->endDate = $endDate;
-
+        $event->picture = 'event_thumbnail_default.png';
         $event->save();
         if ($request->file('image') !== null) {
             $imageName = $event->id . '_event_title_image.jpg';
