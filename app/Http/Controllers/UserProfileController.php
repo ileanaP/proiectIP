@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Location;
+use App\Attend;
+use App\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,9 +22,15 @@ class UserProfileController extends Controller
         $saveMessage = $request->get('saveMessage') != null ? $request->get('saveMessage') : '';
         $user = User::where('id', $userId)->get();
         $location = Location::where('id', $user[0]->location)->get();
-        $locations = Location::where('id', '>', 0)->get();
+        $locations = Location::all();
         $adminIds = $this->getAdminIds();
-        return view('pages.profile', compact('user','location', 'locations', 'adminIds', 'saveMessage'));
+        $userAttendsObjectArray = Attend::where('user_id',$userId)->get();
+        $userEventsIds = array();
+        foreach($userAttendsObjectArray as $userAttendsObject){
+            $userEventsIds[] = $userAttendsObject->event_id;
+        }
+        $userEvents = Event::whereIn('id',$userEventsIds)->get();
+        return view('pages.profile', compact('user','location', 'locations', 'adminIds', 'saveMessage','userEvents'));
     }
 
     public function submitChanges(Request $request)
