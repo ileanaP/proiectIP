@@ -10,6 +10,7 @@ use App\Event;
 use App\User;
 use App\Attend;
 use App\Org;
+use App\Organizer;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
@@ -57,7 +58,14 @@ class EventsController extends Controller
         if ($this->userIsOrganizer($request)) {
             $errorMessage = $request->get('errorMessage') != null ? $request->get('errorMessage') : '';
             $adminIds = $this->getAdminIds();
-            return view('pages.addEvent', compact('adminIds', 'errorMessage'));
+
+           $organizers = Organizer::where('user_id',$request->user()->id)->get();
+           $organizerId = [];
+           foreach($organizers as $organizer){
+               $organizerId[] = $organizer->org_id;
+           }
+           $orgs = Org::where('id',$organizerId)->get();
+            return view('pages.addEvent', compact('adminIds', 'errorMessage','orgs'));
         } else {
             return view('errors.404');
         }
@@ -72,7 +80,7 @@ class EventsController extends Controller
         $this->validator($request->all())->validate();
         $event = new Event;
         $event->name = $request->get('name') != null ? $request->get('name') : '';
-        $event->org_id = Org::where('user_id', $request->user()->id)->get()[0]->id;
+        $event->org_id = Org::where('id', $request->get('orgId'))->get()[0]->id;
         $event->desc = $request->get('description') != null ? $request->get('description') : '';
         $event->link = $request->get('link') != null ? $request->get('link') : '';
         $event->price = $request->get('price') != null ? $request->get('price') : '';
@@ -109,21 +117,25 @@ class EventsController extends Controller
 
     public function editEvent(Request $request)
     {
-        if ($request->get('id') != null) {
-            $eventId = $request->get('id');
-            $orgInfo = Org::where('user_id', $request->user()->id)->get();
-            $orgId = $orgInfo[0]->id;
-            $eventInfo = Event::where(['org_id' => $orgId, 'id' => $eventId])->get();
-            if (count($eventInfo)) {
-                $saveMessage = $request->get('saveMessage') !== null ? $request->get('saveMessage') : '';
-                $adminIds = $this->getAdminIds();
-                return view('pages.editEvent', compact('eventInfo', 'adminIds', 'saveMessage'));
-            } else {
-                return view('errors.404');
-            }
-        } else {
-            return view('errors.404');
+        $x = 0;
+        //check if user is organizer
+        if(!$this->userIsOrganizer($request)) {
+            return view('pages.nopermission');
         }
+        $eventId = $request->get('id');
+        //the event with the id in $request doesn't exist
+        $orgId = Event::where('id',$eventId)->get();
+        if(!count($orgId)) {
+            return view('pages.nopermission');
+        }
+        //check if event belongs to the organization the user is an organizer of
+        $userIsPartOfOrg = Organizer::where('org_id',$orgId[0]->org_id)->where('user_id',$request->user()->id)->get();
+        if(!count($userIsPartOfOrg)) {
+            return view('pages.nopermission');
+        }
+        $eventInfo = Event::where('id',$eventId)->get();
+        $saveMessage = $request->get('saveMessage') !== null ? $request->get('saveMessage') : '';
+        return view('pages.editEvent', compact('eventInfo', 'saveMessage'));
     }
     public function submitEventChanges(Request $request)
     {
@@ -171,10 +183,8 @@ class EventsController extends Controller
         if (!Auth::check()) {
             return false;
         } else {
-            $userId = $request->user()->id;
-
-            $orgInfo = Org::where('user_id', $userId)->get();
-            if (count($orgInfo)) {
+            $org = User::where('id', $request->user()->id)->where('type', 3)->get();
+            if (count($org)) {
                 return true;
             }
             return false;
