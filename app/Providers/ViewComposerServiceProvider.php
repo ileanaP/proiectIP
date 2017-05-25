@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Category;
 use App\Org;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -49,7 +50,12 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
 
         view()->composer('includes.header', function($view) {
-            $view->with('org', Org::all());
+            $orgFromTable = User::where('type','3')->get();
+            $org = array();
+            foreach($orgFromTable as $organizer){
+                $org[] = $organizer->id;
+            }
+            $view->with('org', $org);
         });
 
         view()->composer('layouts.feedbackList', function($view) {

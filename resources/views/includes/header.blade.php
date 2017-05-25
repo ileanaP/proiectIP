@@ -14,16 +14,12 @@
             <ul class="nav navbar-nav">
                 <li id="home"><a href="/">Acasa</a></li>
                 <li><a id="upcomingEvents" href="/upcomingEvents">Evenimente</a></li>
-                @if (Auth::check())
-                    @foreach($org as $organizer)
-                        @if (Auth::user()->id == $organizer->user_id)
-                            <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
-                            <li><a id="myEvents" href="{{ route('myEvents') }}">Evenimentele mele</a></li>
-                        @endif
-                    @endforeach
+                @if (Auth::check() && isset($org) && in_array(Auth::user()->id,$org))
+                    <li><a id="addEventForm" href="/addEventForm">Adaugare eveniment</a></li>
+                    <li><a id="myEvents" href="{{ route('myEvents') }}">Evenimentele mele</a></li>
                 @endif
 
-                @if (Auth::check())
+                @if (Auth::check() && isset($adminIds))
                     @if (in_array(Auth::user()->id, $adminIds))
                         <li><a id="organizersPage" href="/organizersPage">Administrare organizatori</a></li>
                     @endif

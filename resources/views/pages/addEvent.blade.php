@@ -16,12 +16,19 @@
                             <form role="form" action="{{ route('addEvent') }}" enctype="multipart/form-data" method="POST" class="login-form">
                                 {{ csrf_field() }}
 
-                                <div>Categorie:</div>
-                                @include('layouts.categoryList')
+                                <div class="form-group">Categorie:
+                                    @include('layouts.categoryList')
+                                </div>
 
-                                <div>Titlu:</div>
+                                <div class="form-group">Organizatie:
+                                    <select name="orgId">
+                                        @foreach($orgs as $org)
+                                            <option value={{$org->id}}>{{$org->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                <div class="form-group">
+                                <div class="form-group"> Titlu:
                                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
                                     @if ($errors->has('name'))
                                         <span class="help-block">

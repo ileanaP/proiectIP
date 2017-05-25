@@ -10,6 +10,7 @@ use App\Event;
 use App\User;
 use App\Attend;
 use App\Org;
+use App\Organizer;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
@@ -57,7 +58,14 @@ class EventsController extends Controller
         if ($this->userIsOrganizer($request)) {
             $errorMessage = $request->get('errorMessage') != null ? $request->get('errorMessage') : '';
             $adminIds = $this->getAdminIds();
-            return view('pages.addEvent', compact('adminIds', 'errorMessage'));
+
+           $organizers = Organizer::where('user_id',$request->user()->id)->get();
+           $organizerId = [];
+           foreach($organizers as $organizer){
+               $organizerId[] = $organizer->org_id;
+           }
+           $orgs = Org::where('id',$organizerId)->get();
+            return view('pages.addEvent', compact('adminIds', 'errorMessage','orgs'));
         } else {
             return view('errors.404');
         }
@@ -72,7 +80,7 @@ class EventsController extends Controller
         $this->validator($request->all())->validate();
         $event = new Event;
         $event->name = $request->get('name') != null ? $request->get('name') : '';
-        $event->org_id = Org::where('user_id', $request->user()->id)->get()[0]->id;
+        $event->org_id = Org::where('id', $request->get('orgId'))->get()[0]->id;
         $event->desc = $request->get('description') != null ? $request->get('description') : '';
         $event->link = $request->get('link') != null ? $request->get('link') : '';
         $event->price = $request->get('price') != null ? $request->get('price') : '';
@@ -171,10 +179,8 @@ class EventsController extends Controller
         if (!Auth::check()) {
             return false;
         } else {
-            $userId = $request->user()->id;
-
-            $orgInfo = Org::where('user_id', $userId)->get();
-            if (count($orgInfo)) {
+            $org = User::where('id', $request->user()->id)->where('type', 3)->get();
+            if (count($org)) {
                 return true;
             }
             return false;
