@@ -1,8 +1,8 @@
 <div class="col-md-3">
     <div class="list-group">
         <form role="form" action="{{ route('deleteOrganizers') }}" method="POST">
-            {{ csrf_field() }}
-            <h3>Organizatori actuali: </h3>
+
+            <h3>Organizatii actuali: </h3>
             @foreach($org as $organizer)
                 <h4><a href="{{ route('organizerDetails', ['id' => $organizer->id] ) }}">{{ $organizer->name }}</a></h4>
                     <input type="checkbox" name="org_{{$organizer->id}}" value="{{$organizer->id}}">Sterge

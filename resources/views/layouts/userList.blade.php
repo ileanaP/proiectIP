@@ -2,7 +2,9 @@
     <div class="list-group">
         <select name="userId">
             @foreach($users as $user)
-                <option value={{$user->id}}>{{$user->name}} {{$user->surname}}</option>
+                @if($user->type != '3')
+                    <option value={{$user->id}}>{{$user->name}} {{$user->surname}}</option>
+                @endif
             @endforeach
         </select>
     </div>

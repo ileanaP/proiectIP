@@ -18,7 +18,7 @@ class OrganizerController extends Controller
     public function seeOrganizers(Request $request)
     {
         if ($this->isAdmin($request)) {
-            $users = User::where('type', 4)->get();
+            $users = User::all();
             $adminIds = $this->getAdminIds();
             return view('pages.adminPageModifyOrgs', compact('users', 'adminIds'));
         } else {

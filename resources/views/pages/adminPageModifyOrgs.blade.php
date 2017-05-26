@@ -1,5 +1,4 @@
-
-@extends('layouts.form')
+@extends('layouts.home')
 @section('content')
 
     @include('layouts.organizerList')
