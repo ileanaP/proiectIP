@@ -59,12 +59,16 @@ class EventsController extends Controller
             $errorMessage = $request->get('errorMessage') != null ? $request->get('errorMessage') : '';
             $adminIds = $this->getAdminIds();
 
-           $organizers = Organizer::where('user_id',$request->user()->id)->get();
+           $organizers = Organizer::where('user_id', $request->user()->id)->get();
            $organizerId = [];
            foreach($organizers as $organizer){
                $organizerId[] = $organizer->org_id;
            }
-           $orgs = Org::where('id',$organizerId)->get();
+           if (!empty($organizerId)) {
+               $orgs = Org::where('id', $organizerId)->get();
+           } else {
+               $orgs = [];
+           }
             return view('pages.addEvent', compact('adminIds', 'errorMessage','orgs'));
         } else {
             return view('errors.404');

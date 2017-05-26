@@ -33,39 +33,18 @@
         <div class="well">
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1">
-                    <!-- error messages related to changing user data -->
-                    <!-- ------ ------ ------ ------ ------ ------ ------ ------ ------ -->
-                    <div>
-                        @if  ($saveMessage != '' && !$errors->all())
-                            <h4> {{ $saveMessage }}</h4>
-                        @endif
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
-                    @if ($errors->has('password_confirmation'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                        </span>
-                    @endif
-                    @if ($errors->has('image'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('image') }}</strong>
-                        </span>
-                    @endif
-                </div>
+
                 <!-- events of the user from the Attends table -->
                 <!-- ------ ------ ------ ------ ------ ------ ------ ------ ------ -->
-                <legend>Evenimente la care a participat</legend>
                     @if(count($userEvents) != 0)
+                        <legend>Evenimente la care a participat</legend>
                         <ul>
                             @foreach($userEvents as $userEvent)
                                 <li><a href="{{ route('eventpage', ['id' => $userEvent->id] ) }}">{{$userEvent->name}}</a></li>
                             @endforeach
                         </ul>
                     @else
-                        <h3>Nu a participat la nici un eveniment</h3>
+                        <h3>Nu a participat la nici un eveniment!</h3>
                     @endif
                 </div>
                 <div class="tab-pane fade in" id="tab2">
@@ -152,6 +131,29 @@
                         </fieldset>
                     </form>
                 </div>
+            </div>
+
+            <!-- error messages related to changing user data -->
+            <!-- ------ ------ ------ ------ ------ ------ ------ ------ ------ -->
+            <div>
+                @if  ($saveMessage != '' && !$errors->all())
+                    <h4> {{ $saveMessage }}</h4>
+                @endif
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                @endif
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                @endif
+                @if ($errors->has('image'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('image') }}</strong>
+                        </span>
+                @endif
             </div>
         </div>
 
