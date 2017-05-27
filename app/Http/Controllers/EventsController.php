@@ -66,15 +66,15 @@ class EventsController extends Controller
             $errorMessage = $request->get('errorMessage') != null ? $request->get('errorMessage') : '';
             $adminIds = $this->getAdminIds();
 
-           $organizers = Organizer::where('user_id', $request->user()->id)->get();
-           $organizerId = [];
-           foreach($organizers as $organizer){
-               $organizerId[] = $organizer->org_id;
+           $organizerObjectArray = Organizer::where('user_id', $request->user()->id)->get();
+           $organizerOrgId = [];
+           foreach($organizerObjectArray as $organizer){
+               $organizerOrgId[] = $organizer->org_id;
            }
-           if (!empty($organizerId)) {
-               $orgs = Org::where('id', $organizerId)->get();
+           if (!empty($organizerOrgId)) {
+               $orgs = Org::whereIn('id', $organizerOrgId)->get();
            } else {
-               $orgs = [];
+               return view(pages.nopermission);
            }
             return view('pages.addEvent', compact('adminIds', 'errorMessage','orgs'));
         } else {
