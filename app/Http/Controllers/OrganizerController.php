@@ -98,6 +98,8 @@ class OrganizerController extends Controller
         $organizer->org_id = $org->id;
         $organizer->save();
 
+        DB::table('users')->where('id', $request->user()->id)->update(['type' => 3]);
+
         $adminIds = $this->getAdminIds();
 
         return view('pages.home', compact('adminIds'));

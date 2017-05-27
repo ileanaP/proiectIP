@@ -58,15 +58,8 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('org', $org);
         });
 
-        view()->composer('layouts.feedbackList', function($view) {
-            $view->with('feedback', DB::table('feedback')
-                    ->join('users', 'users.id', '=', 'feedback.user_id')
-                    ->select('feedback.created_at', 'feedback.comm', 'feedback.stars', 'users.user')
-                    ->get());
-        });
-
         view()->composer('includes.header', function($view){
-            $organizersObject = User::where('type','3')->get();
+            $organizersObject = User::whereIn('type',array('2','3','4'))->get();
             $orgIds = [];
             foreach($organizersObject as $organizer){
                 $orgIds [] = $organizer->id;
