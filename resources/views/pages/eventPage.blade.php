@@ -103,11 +103,12 @@
                                     <button type="submit">Trimite!
                                     </button>
                                 </form>
+                                <br><br>
                             @endif
                         @endif
                     @endif
                         @if ($feedbackMessage != '')
-                            <h4> {{ $feedbackMessage }} </h4>
+                            <h4 style="color:red"> {{ $feedbackMessage }} </h4>
                         @endif
                     </div>
 

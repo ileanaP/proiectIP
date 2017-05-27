@@ -89,7 +89,7 @@
                                     <input type="text" name="date" id="date" value="{{ old('date') }}" class="form-control"
                                            style="width:150px;display:inline-block">
                                     <input type="text" name="hour" id="hour" value="{{ old('hour') }}" class="form-control"
-                                           style="width:75px;display:inline-block">
+                                           style="width:90px;display:inline-block">
                                     @if ($errors->has('date'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('date') }}</strong>
@@ -101,7 +101,7 @@
                                     <input type="text" name="dateFinal" id="dateFinal" value="{{ old('dateFinal') }}" class="form-control"
                                            style="width:150px;display:inline-block">
                                     <input type="text" name="hourFinal" id="hourFinal" value="{{ old('hourFinal') }}" class="form-control"
-                                           style="width:75px;display:inline-block">
+                                           style="width:90px;display:inline-block">
                                     @if ($errors->has('dateFinal'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('dateFinal') }}</strong>
