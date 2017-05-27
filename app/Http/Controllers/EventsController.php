@@ -74,7 +74,7 @@ class EventsController extends Controller
            if (!empty($organizerOrgId)) {
                $orgs = Org::whereIn('id', $organizerOrgId)->get();
            } else {
-               return view(pages.nopermission);
+               return view('pages.nopermission');
            }
             return view('pages.addEvent', compact('adminIds', 'errorMessage','orgs'));
         } else {
