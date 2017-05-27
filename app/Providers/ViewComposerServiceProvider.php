@@ -64,5 +64,14 @@ class ViewComposerServiceProvider extends ServiceProvider
                     ->select('feedback.created_at', 'feedback.comm', 'feedback.stars', 'users.user')
                     ->get());
         });
+
+        view()->composer('includes.header', function($view){
+            $organizersObject = User::where('type','3')->get();
+            $orgIds = [];
+            foreach($organizersObject as $organizer){
+                $orgIds [] = $organizer->id;
+            }
+            $view->with('orgIds', $orgIds);
+        });
     }
 }

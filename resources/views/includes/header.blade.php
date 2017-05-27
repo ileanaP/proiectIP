@@ -35,7 +35,9 @@
                 @endif
 
                 @if (Auth::check())
-                    <li><li><a id="addOrg" href="/addOrganization">Adauga Organizatie</a></li></li>
+                    @if(in_array(Auth::user()->id,$orgIds))
+                        <li><li><a id="addOrg" href="/addOrganization">Adauga Organizatie</a></li></li>
+                    @endif
                     <li><a href="logout">Iesire din cont</a></li>
                 @endif
 
