@@ -50,7 +50,14 @@ class EventsController extends Controller
         $attendees = User::find($usrid);
         $feedbackMessage = $request->get('feedbackMessage') !== null ? $request->get('feedbackMessage') : '';
         $adminIds = $this->getAdminIds();
-        return view('pages.eventPage', compact('id', 'event', 'n', 'pics', 'org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
+
+        $feedback = DB::table('users')
+            ->join('feedback', 'users.id', '=', 'feedback.user_id')
+            ->select('feedback.created_at', 'feedback.comm', 'feedback.stars', 'users.user')
+            ->where('feedback.event_id', $id)
+            ->get();
+
+        return view('pages.eventPage', compact('feedback','id', 'event', 'n', 'pics', 'org', 'usrid', 'attendees', 'adminIds', 'feedbackMessage'));
     }
 
     public function addEventForm(Request $request)
