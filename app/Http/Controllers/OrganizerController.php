@@ -5,6 +5,7 @@ use App\Event;
 use App\Feedback;
 use App\Org;
 use App\Organizer;
+use App\Location;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -76,6 +77,30 @@ class OrganizerController extends Controller
         DB::table('users')->where('id', $userId)->update(['type' => 3]);
 
         return redirect('/');
+    }
+
+    public function addOrganizationForm(Request $request){
+        $locations = Location::all();
+        return view('pages.addOrganization', compact('locations'));
+    }
+
+    public function submitAddOrganization(Request $request){
+        $org = new Org;
+        $org->name = $request->get('orgName');
+        $org->address = $request->get('orgAddress');
+        $org->phone = $request->get('orgPhone');
+        $org->user_id = $request->user()->id;
+        $org->location = $request->get('orgLocation');
+        $org->save();
+
+        $organizer = new Organizer;
+        $organizer->user_id = $request->user()->id;
+        $organizer->org_id = $org->id;
+        $organizer->save();
+
+        $adminIds = $this->getAdminIds();
+
+        return view('pages.home', compact('adminIds'));
     }
 
     private function getAdminIds()

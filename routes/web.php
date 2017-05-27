@@ -33,6 +33,8 @@ Route::get('organizersPage', 'OrganizerController@seeOrganizers')->name('seeOrga
 Route::get('organizerDetails', 'OrganizerController@getOrganizerDetails')->name('organizerDetails');
 Route::post('addOrganizer', 'OrganizerController@addOrganizer')->name('addOrganizer');
 Route::post('deleteOrganizers', 'OrganizerController@deleteOrganizers')->name('deleteOrganizers');
+Route::get('addOrganization','OrganizerController@addOrganizationForm')->name('addOrganization');
+Route::post('submitAddOrganization','OrganizerController@submitAddOrganization')->name('submitAddOrganization');
 
 Route::post('addFeedback', 'FeedbackController@addFeedback')->name('addFeedback');
 

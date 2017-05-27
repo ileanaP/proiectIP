@@ -35,7 +35,8 @@
                 @endif
 
                 @if (Auth::check())
-                <li><a href="logout">Iesire din cont</a></li>
+                    <li><li><a id="addOrg" href="/addOrganization">Adauga Organizatie</a></li></li>
+                    <li><a href="logout">Iesire din cont</a></li>
                 @endif
 
             </ul>
