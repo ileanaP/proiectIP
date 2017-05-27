@@ -74,7 +74,9 @@ class EventsController extends Controller
            if (!empty($organizerOrgId)) {
                $orgs = Org::whereIn('id', $organizerOrgId)->get();
            } else {
-               return view('pages.nopermission');
+               $errMessage = 'Nu aveti permisiunea sa adaugati evenimente fara sa faceti parte dintr-o organizatie.'.
+                                'Va rugam, adaugati o noua organizatie accesand link-ul corespunzator din meniu, si reincercati.';
+               return view('pages.nopermission', compact('errMessage'));
            }
             return view('pages.addEvent', compact('adminIds', 'errorMessage','orgs'));
         } else {
