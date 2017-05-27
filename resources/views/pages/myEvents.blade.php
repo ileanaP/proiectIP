@@ -7,6 +7,10 @@
 
             <div class="row">
 
+                @if (count($events) == 0)
+                    <h3>Nu ai evenimente in trecut!</h3>
+                @else
+
                 @foreach($events as $event)
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail" style="border:0px">
@@ -20,6 +24,8 @@
                         </div>
                     </div>
                 @endforeach
+
+                @endif
 
             </div>
         </div>
