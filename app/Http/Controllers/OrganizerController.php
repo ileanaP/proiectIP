@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Feedback;
 use App\Org;
+use App\Organizer;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,8 @@ class OrganizerController extends Controller
         if ($this->isAdmin($request)) {
             $users = User::all();
             $adminIds = $this->getAdminIds();
-            return view('pages.adminPageModifyOrgs', compact('users', 'adminIds'));
+            $orgs = Org::all();
+            return view('pages.adminPageModifyOrgs', compact('users', 'adminIds','orgs'));
         } else {
             return view('errors.404');
         }
@@ -65,21 +67,15 @@ class OrganizerController extends Controller
     {
         $userId = $request->get('userId');
         $userInfo = User::where('id', $userId)->get();
+        $orgId = $request->get('orgId');
+        $organizer = new Organizer;
+        $organizer->user_id = $userId;
+        $organizer->org_id = $orgId;
+        $organizer->save();
+        //$isAlreadyOrganizer = DB::table('orgs')->where('user_id', $userId)->get();
+        DB::table('users')->where('id', $userId)->update(['type' => 3]);
 
-        $data = [
-            'name' => $userInfo[0]->name . ' ' . $userInfo[0]->surname,
-            'address' => $userInfo[0]->email,
-            'user_id' => $userId,
-        ];
-
-        $isAlreadyOrganizer = DB::table('orgs')->where('user_id', $userId)->get();
-
-        if (!empty($isAlreadyOrganizer)) {
-            DB::table('orgs')->insert($data);
-            DB::table('users')->where('id', $userId)->update(['type' => 3]);
-        }
-
-        return $this->seeOrganizers();
+        return redirect('/');
     }
 
     private function getAdminIds()

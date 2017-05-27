@@ -1,8 +1,5 @@
 @extends('layouts.home')
 @section('content')
-
-    @include('layouts.organizerList')
-
     <div class="top-content">
 
         <div class="inner-bg">
@@ -17,8 +14,16 @@
                         <div class="form-bottom">
                             <form role="form" action="{{ route('addOrganizer') }}" method="POST" class="login-form">
                                 {{ csrf_field() }}
-
                                 @include('layouts.userList')
+                                <div class="col-md-3">
+                                    <div class="list-group">
+                                        <select name="orgId">
+                                            @foreach($orgs as $organization)
+                                                <option value={{$organization->id}}>{{$organization->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <br><br>
                                 <button type="submit" class="btn btn-success">
                                     Submit
